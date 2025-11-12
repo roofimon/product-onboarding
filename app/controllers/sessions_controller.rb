@@ -1,6 +1,13 @@
 class SessionsController < ApplicationController
   def new
-    redirect_to root_path if current_user
+    if current_user
+      if admin?
+        redirect_to admin_dashboard_path
+      else
+        redirect_to home_index_path
+      end
+      return
+    end
   end
 
   def create
@@ -11,7 +18,7 @@ class SessionsController < ApplicationController
       if user.admin?
         redirect_to admin_dashboard_path, notice: "Successfully logged in! Welcome back, #{user.name}!"
       else
-        redirect_to root_path, notice: "Successfully logged in! Welcome back, #{user.name}!"
+        redirect_to home_index_path, notice: "Successfully logged in! Welcome back, #{user.name}!"
       end
     else
       flash.now[:alert] = "Invalid email or password"
