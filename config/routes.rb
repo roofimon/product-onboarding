@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy", as: :logout
 
+  # Admin routes
+  get "admin", to: "admin#dashboard", as: :admin_dashboard
+
   # Defines the root path route ("/")
-  root "registrations#new"
+  root "home#index"
 end

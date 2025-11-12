@@ -1,0 +1,81 @@
+<div class="home-container">
+  <div class="home-content">
+    <header class="home-header">
+      <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <div>
+          <h1>Welcome to Product Onboarding</h1>
+          <p class="subtitle">Hello, <%= @user.name %> <%= @user.surname %>! You're successfully logged in.</p>
+        </div>
+        <div style="display: flex; align-items: center; gap: var(--spacing-md);">
+          <span style="color: var(--color-text-secondary); font-size: 0.875rem;"><%= @user.email %></span>
+          <%= link_to logout_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to logout?" }, class: "btn btn-secondary", style: "white-space: nowrap;" do %>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: var(--spacing-xs); vertical-align: middle;">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Logout
+          <% end %>
+        </div>
+      </div>
+    </header>
+
+    <div class="home-sections">
+      <div class="section-card">
+        <div class="card-icon">
+          <svg width="48" height="48" fill="var(--color-primary)" viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+        </div>
+        <h3>Getting Started</h3>
+        <p>Learn how to use the platform and explore available features.</p>
+        <a href="#" class="card-link">Learn More →</a>
+      </div>
+
+      <div class="section-card">
+        <div class="card-icon">
+          <svg width="48" height="48" fill="var(--color-success)" viewBox="0 0 24 24">
+            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <h3>Your Profile</h3>
+        <p>Manage your account settings and personal information.</p>
+        <a href="#" class="card-link">View Profile →</a>
+      </div>
+
+      <div class="section-card">
+        <div class="card-icon">
+          <svg width="48" height="48" fill="var(--color-warning)" viewBox="0 0 24 24">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+          </svg>
+        </div>
+        <h3>Analytics</h3>
+        <p>View your activity and progress on the platform.</p>
+        <a href="#" class="card-link">View Analytics →</a>
+      </div>
+
+      <div class="section-card">
+        <div class="card-icon">
+          <svg width="48" height="48" fill="var(--color-info)" viewBox="0 0 24 24">
+            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+        </div>
+        <h3>Support</h3>
+        <p>Get help and contact our support team if needed.</p>
+        <a href="#" class="card-link">Contact Support →</a>
+      </div>
+    </div>
+
+    <div class="home-actions">
+      <h3>Quick Actions</h3>
+      <div class="action-buttons">
+        <a href="#" class="btn btn-primary">Start New Project</a>
+        <a href="#" class="btn btn-secondary">Browse Resources</a>
+        <%= link_to logout_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to logout?" }, class: "btn btn-danger" do %>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: var(--spacing-xs); vertical-align: middle;">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Logout
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

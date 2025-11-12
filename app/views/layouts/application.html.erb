@@ -24,6 +24,25 @@
   </head>
 
   <body>
-    <%= yield %>
+    <% if logged_in? && !request.path.start_with?('/admin') %>
+      <nav class="main-nav">
+        <div class="nav-content">
+          <div class="nav-brand">
+            <%= link_to "Product Onboarding", root_path %>
+          </div>
+          <div class="nav-user">
+            <span class="user-greeting">Hello, <%= current_user.name %>!</span>
+            <% if admin? %>
+              <%= link_to "Admin Panel", admin_dashboard_path, class: "nav-link" %>
+            <% end %>
+            <%= link_to "Logout", logout_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to logout?" }, class: "nav-link logout-link" %>
+          </div>
+        </div>
+      </nav>
+    <% end %>
+    
+    <main class="<%= logged_in? && !request.path.start_with?('/admin') ? 'with-nav' : '' %>">
+      <%= yield %>
+    </main>
   </body>
 </html>
