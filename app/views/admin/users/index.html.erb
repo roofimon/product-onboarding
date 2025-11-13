@@ -77,57 +77,6 @@
     </header>
 
     <div class="admin-content">
-      <!-- User Statistics -->
-      <div class="stats-grid" style="margin-bottom: var(--spacing-xl);">
-        <div class="stat-card">
-          <div class="stat-icon bg-primary">
-            <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
-              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-            </svg>
-          </div>
-          <div class="stat-content">
-            <h3><%= @total_count %></h3>
-            <p>Total Users</p>
-          </div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-icon bg-warning">
-            <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-            </svg>
-          </div>
-          <div class="stat-content">
-            <h3><%= @waiting_count %></h3>
-            <p>Waiting Approval</p>
-          </div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-icon bg-success">
-            <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
-              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-          </div>
-          <div class="stat-content">
-            <h3><%= @active_count %></h3>
-            <p>Active Users</p>
-          </div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-icon bg-danger">
-            <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-            </svg>
-          </div>
-          <div class="stat-content">
-            <h3><%= @inactive_count %></h3>
-            <p>Inactive Users</p>
-          </div>
-        </div>
-      </div>
-
       <!-- Filters and Table Header -->
       <div class="content-section">
         <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg); padding-bottom: var(--spacing-md); border-bottom: 2px solid var(--color-border);">
