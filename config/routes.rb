@@ -27,7 +27,11 @@ Rails.application.routes.draw do
   get "admin/dashboard", to: "admin#dashboard"
   
   namespace :admin do
-    resources :users, only: [:index]
+    resources :users, only: [:index] do
+      member do
+        patch :approve
+      end
+    end
   end
 
   # Defines the root path route ("/")

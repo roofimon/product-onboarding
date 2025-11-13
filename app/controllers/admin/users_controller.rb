@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :require_admin
+  before_action :set_user, only: [:approve]
 
   def index
     @users = User.all
@@ -13,5 +14,20 @@ class Admin::UsersController < ApplicationController
     end
     
     @users = @users.order(created_at: :desc)
+  end
+
+  def approve
+    if @user.waiting_for_approve?
+      @user.update(status: :active)
+      redirect_to admin_users_path(status: params[:status_filter] || params[:status]), notice: "#{@user.name} #{@user.surname} has been approved and is now active."
+    else
+      redirect_to admin_users_path(status: params[:status_filter] || params[:status]), alert: "User is not waiting for approval."
+    end
+  end
+
+  private
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end
