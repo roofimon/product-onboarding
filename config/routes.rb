@@ -24,6 +24,11 @@ Rails.application.routes.draw do
 
   # Admin routes
   get "admin", to: "admin#dashboard", as: :admin_dashboard
+  get "admin/dashboard", to: "admin#dashboard"
+  
+  namespace :admin do
+    resources :users, only: [:index]
+  end
 
   # Defines the root path route ("/")
   root "sessions#new"
