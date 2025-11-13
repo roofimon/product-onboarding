@@ -10,6 +10,7 @@ if admin.new_record?
   admin.password = 'admin123'
   admin.password_confirmation = 'admin123'
   admin.admin = true
+  admin.status = :active
   admin.save!
   puts "Admin user created: admin@example.com / admin123"
 else
@@ -19,7 +20,8 @@ else
     surname: 'User',
     password: 'admin123',
     password_confirmation: 'admin123',
-    admin: true
+    admin: true,
+    status: :active
   )
   puts "Admin user password reset: admin@example.com / admin123"
 end

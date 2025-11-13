@@ -682,6 +682,21 @@ main.with-nav {
   color: var(--color-secondary);
 }
 
+.badge-success {
+  background-color: rgba(0, 212, 170, 0.1);
+  color: var(--color-success);
+}
+
+.badge-warning {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: var(--color-warning);
+}
+
+.badge-danger {
+  background-color: rgba(240, 68, 56, 0.1);
+  color: var(--color-danger);
+}
+
 .action-buttons {
   display: flex;
   gap: var(--spacing-sm);

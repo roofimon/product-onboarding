@@ -5,6 +5,9 @@ class AdminController < ApplicationController
     @users_count = User.count
     @admin_users_count = User.where(admin: true).count
     @regular_users_count = User.where(admin: false).count
+    @waiting_approval_count = User.waiting_for_approve.count
+    @active_users_count = User.active.count
+    @inactive_users_count = User.inactive.count
     @recent_users = User.order(created_at: :desc).limit(5)
   end
 end

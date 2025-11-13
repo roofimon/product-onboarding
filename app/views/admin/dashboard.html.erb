@@ -122,8 +122,8 @@
             </svg>
           </div>
           <div class="stat-content">
-            <h3>100%</h3>
-            <p>System Health</p>
+            <h3><%= @waiting_approval_count %></h3>
+            <p>Waiting Approval</p>
           </div>
         </div>
       </div>
@@ -142,6 +142,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Role</th>
+                <th>Status</th>
                 <th>Joined</th>
                 <th>Actions</th>
               </tr>
@@ -161,6 +162,20 @@
                   <td>
                     <span class="badge <%= user.admin? ? 'badge-primary' : 'badge-secondary' %>">
                       <%= user.admin? ? 'Admin' : 'User' %>
+                    </span>
+                  </td>
+                  <td>
+                    <span class="badge <%= case user.status.to_sym
+                      when :waiting_for_approve
+                        'badge-warning'
+                      when :active
+                        'badge-success'
+                      when :inactive
+                        'badge-danger'
+                      else
+                        'badge-secondary'
+                      end %>">
+                      <%= user.status.humanize.titleize %>
                     </span>
                   </td>
                   <td><%= user.created_at.strftime('%b %d, %Y') %></td>
