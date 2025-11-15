@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     resources :users, only: [:index] do
       member do
         patch :approve
+        patch :deactivate
+        patch :activate
       end
     end
   end

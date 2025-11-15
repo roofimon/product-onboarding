@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :require_admin
-  before_action :set_user, only: [:approve]
+  before_action :set_user, only: [:approve, :deactivate, :activate]
 
   def index
     @users = User.all
@@ -22,6 +22,24 @@ class Admin::UsersController < ApplicationController
       redirect_to admin_users_path(status: params[:status_filter] || params[:status]), notice: "#{@user.name} #{@user.surname} has been approved and is now active."
     else
       redirect_to admin_users_path(status: params[:status_filter] || params[:status]), alert: "User is not waiting for approval."
+    end
+  end
+
+  def deactivate
+    if @user.active?
+      @user.update(status: :inactive)
+      redirect_to admin_users_path(status: params[:status_filter] || params[:status]), notice: "#{@user.name} #{@user.surname} has been deactivated."
+    else
+      redirect_to admin_users_path(status: params[:status_filter] || params[:status]), alert: "User is not active."
+    end
+  end
+
+  def activate
+    if @user.inactive?
+      @user.update(status: :active)
+      redirect_to admin_users_path(status: params[:status_filter] || params[:status]), notice: "#{@user.name} #{@user.surname} has been activated."
+    else
+      redirect_to admin_users_path(status: params[:status_filter] || params[:status]), alert: "User is not inactive."
     end
   end
 

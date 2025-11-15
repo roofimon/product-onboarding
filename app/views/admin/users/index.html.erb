@@ -159,6 +159,18 @@
                               <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                             </svg>
                           <% end %>
+                        <% elsif user.active? %>
+                          <%= link_to deactivate_admin_user_path(user, status_filter: params[:status]), class: "btn-icon text-danger", title: "Deactivate", data: { turbo_method: :patch, turbo_confirm: "Are you sure you want to deactivate #{user.name} #{user.surname}?" } do %>
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                            </svg>
+                          <% end %>
+                        <% elsif user.inactive? %>
+                          <%= link_to activate_admin_user_path(user, status_filter: params[:status]), class: "btn-icon text-success", title: "Activate", data: { turbo_method: :patch, turbo_confirm: "Are you sure you want to activate #{user.name} #{user.surname}?" } do %>
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                          <% end %>
                         <% else %>
                           <button class="btn-icon" title="Edit">
                             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
