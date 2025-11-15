@@ -1,0 +1,26 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <h1 class="auth-title">Register New Product</h1>
+
+    <% if flash[:alert] %>
+      <div class="alert alert-error">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+
+    <% if @product.errors.any? %>
+      <div class="alert alert-error">
+        <h4><%= pluralize(@product.errors.count, "error") %> prohibited this product from being created:</h4>
+        <ul style="margin-top: var(--spacing-sm); padding-left: var(--spacing-lg);">
+          <% @product.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= render "form" %>
+  </div>
+</div>
+
+

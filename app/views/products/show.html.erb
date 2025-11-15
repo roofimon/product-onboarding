@@ -1,0 +1,64 @@
+<div class="home-container">
+  <div class="home-content">
+    <header class="home-header">
+      <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <div>
+          <h1><%= @product.name %></h1>
+          <p class="subtitle">Product Details</p>
+        </div>
+        <div>
+          <%= link_to "Back to Products", products_path, class: "btn btn-secondary" %>
+        </div>
+      </div>
+    </header>
+
+    <div class="content-section" style="margin-top: var(--spacing-xl);">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-xl);">
+        <div>
+          <h2 style="margin-bottom: var(--spacing-lg);">Product Information</h2>
+          
+          <div style="margin-bottom: var(--spacing-lg);">
+            <div style="font-size: 0.875rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-xs);">Name</div>
+            <div style="font-size: 1.125rem; font-weight: 600;"><%= @product.name %></div>
+          </div>
+
+          <div style="margin-bottom: var(--spacing-lg);">
+            <div style="font-size: 0.875rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-xs);">Description</div>
+            <div style="line-height: 1.8; white-space: pre-wrap;"><%= @product.description %></div>
+          </div>
+
+          <div style="margin-bottom: var(--spacing-lg);">
+            <div style="font-size: 0.875rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-xs);">Registered By</div>
+            <div style="font-weight: 500;"><%= @product.user.name %> <%= @product.user.surname %></div>
+            <div style="font-size: 0.875rem; color: var(--color-text-secondary);"><%= @product.user.email %></div>
+          </div>
+
+          <div style="margin-bottom: var(--spacing-lg);">
+            <div style="font-size: 0.875rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-xs);">Registered On</div>
+            <div><%= @product.created_at.strftime('%B %d, %Y at %I:%M %p') %></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-card" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-info) 100%); color: white; padding: var(--spacing-xl);">
+            <h2 style="color: white; margin-bottom: var(--spacing-xl);">Pricing Information</h2>
+            
+            <div style="margin-bottom: var(--spacing-xl);">
+              <div style="font-size: 0.875rem; opacity: 0.9; margin-bottom: var(--spacing-sm);">Open Price</div>
+              <div style="font-size: 2rem; font-weight: 700;">$<%= number_with_precision(@product.open_price, precision: 2) %></div>
+              <div style="font-size: 0.75rem; opacity: 0.8; margin-top: var(--spacing-xs);">Starting bid amount</div>
+            </div>
+
+            <div style="padding-top: var(--spacing-xl); border-top: 1px solid rgba(255, 255, 255, 0.2);">
+              <div style="font-size: 0.875rem; opacity: 0.9; margin-bottom: var(--spacing-sm);">Price Per Bid</div>
+              <div style="font-size: 1.5rem; font-weight: 600;">$<%= number_with_precision(@product.price_per_bid, precision: 2) %></div>
+              <div style="font-size: 0.75rem; opacity: 0.8; margin-top: var(--spacing-xs);">Minimum increment per bid</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

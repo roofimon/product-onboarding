@@ -9,6 +9,8 @@ class User < ApplicationRecord
     inactive: 2
   }
 
+  has_many :products, dependent: :destroy
+
   validates :name, presence: true, length: { minimum: 2, maximum: 50 }
   validates :surname, presence: true, length: { minimum: 2, maximum: 50 }
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: URI::MailTo::EMAIL_REGEXP }

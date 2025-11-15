@@ -1,0 +1,34 @@
+<%= form_with model: @product, local: true, class: "auth-form" do |f| %>
+  <div class="form-group">
+    <%= f.label :name, "Product Name", class: "form-label" %>
+    <%= f.text_field :name, class: "form-input", placeholder: "Enter product name", required: true, autofocus: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description, "Description", class: "form-label" %>
+    <%= f.text_area :description, class: "form-input form-textarea", placeholder: "Enter product description (minimum 10 characters)", required: true, rows: 5 %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :open_price, "Open Price", class: "form-label" %>
+    <%= f.number_field :open_price, class: "form-input", placeholder: "0.00", step: 0.01, min: 0.01, required: true %>
+    <small style="color: var(--color-text-secondary); font-size: 0.75rem; margin-top: var(--spacing-xs); display: block;">
+      The starting price for this product
+    </small>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :price_per_bid, "Price Per Bid", class: "form-label" %>
+    <%= f.number_field :price_per_bid, class: "form-input", placeholder: "0.00", step: 0.01, min: 0.01, required: true %>
+    <small style="color: var(--color-text-secondary); font-size: 0.75rem; margin-top: var(--spacing-xs); display: block;">
+      The minimum increment amount for each bid
+    </small>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "Create Product", class: "btn btn-primary btn-block" %>
+    <%= link_to "Cancel", products_path, class: "btn btn-secondary btn-block" %>
+  </div>
+<% end %>
+
+

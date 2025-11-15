@@ -30,6 +30,9 @@
           <div class="nav-brand">
             <%= link_to "Product Onboarding", root_path %>
           </div>
+          <div class="nav-links" style="display: flex; align-items: center; gap: var(--spacing-md); flex: 1; justify-content: center;">
+            <%= link_to "Home", home_index_path, class: "nav-link" %>
+          </div>
           <div class="nav-user">
             <span class="user-greeting">Hello, <%= current_user.name %>!</span>
             <% if admin? %>

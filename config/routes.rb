@@ -22,6 +22,9 @@ Rails.application.routes.draw do
   # Home route
   get "home", to: "home#index", as: :home_index
 
+  # Products routes
+  resources :products
+
   # Admin routes
   get "admin", to: "admin#dashboard", as: :admin_dashboard
   get "admin/dashboard", to: "admin#dashboard"

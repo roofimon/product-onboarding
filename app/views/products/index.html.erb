@@ -1,0 +1,61 @@
+<div class="home-container">
+  <div class="home-content">
+    <header class="home-header">
+      <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <div>
+          <h1>Products</h1>
+          <p class="subtitle">Browse all registered products</p>
+        </div>
+        <div>
+          <%= link_to "Register New Product", new_product_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+    </header>
+
+    <% if @products.any? %>
+      <div class="products-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--spacing-lg); margin-top: var(--spacing-xl);">
+        <% @products.each do |product| %>
+          <div class="section-card" style="cursor: pointer;" onclick="window.location='<%= product_path(product) %>'">
+            <div class="card-icon">
+              <svg width="48" height="48" fill="var(--color-primary)" viewBox="0 0 24 24">
+                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+            </div>
+            <h3 style="margin-bottom: var(--spacing-sm);"><%= product.name %></h3>
+            <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-md); font-size: 0.875rem;">
+              <%= truncate(product.description, length: 100) %>
+            </p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: var(--spacing-md); padding-top: var(--spacing-md); border-top: 1px solid var(--color-border);">
+              <div>
+                <div style="font-size: 0.75rem; color: var(--color-text-secondary);">Open Price</div>
+                <div style="font-weight: 600; color: var(--color-primary);">$<%= number_with_precision(product.open_price, precision: 2) %></div>
+              </div>
+              <div>
+                <div style="font-size: 0.75rem; color: var(--color-text-secondary);">Bid Increment</div>
+                <div style="font-weight: 600; color: var(--color-success);">$<%= number_with_precision(product.price_per_bid, precision: 2) %></div>
+              </div>
+            </div>
+            <div style="margin-top: var(--spacing-sm); font-size: 0.75rem; color: var(--color-text-secondary);">
+              By <%= product.user.name %> <%= product.user.surname %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="content-section" style="text-align: center; padding: var(--spacing-2xl); margin-top: var(--spacing-xl);">
+        <div class="card-icon" style="margin: 0 auto var(--spacing-lg);">
+          <svg width="64" height="64" fill="var(--color-text-secondary)" viewBox="0 0 24 24">
+            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+        </div>
+        <h3 style="margin-bottom: var(--spacing-md);">No products yet</h3>
+        <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-xl);">
+          Be the first to register a product!
+        </p>
+        <%= link_to "Register New Product", new_product_path, class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
