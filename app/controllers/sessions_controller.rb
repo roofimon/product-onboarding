@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
       if admin?
         redirect_to admin_dashboard_path
       else
-        redirect_to home_index_path
+        redirect_to root_path
       end
       return
     end
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
       if user.admin?
         redirect_to admin_dashboard_path, notice: "Successfully logged in! Welcome back, #{user.name}!"
       else
-        redirect_to home_index_path, notice: "Successfully logged in! Welcome back, #{user.name}!"
+        redirect_to root_path, notice: "Successfully logged in! Welcome back, #{user.name}!"
       end
     else
       flash.now[:alert] = "Invalid email or password"

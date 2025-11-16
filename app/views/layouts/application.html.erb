@@ -24,27 +24,40 @@
   </head>
 
   <body>
-    <% if logged_in? && !request.path.start_with?('/admin') %>
+    <% if request.path == root_path || (logged_in? && !request.path.start_with?('/admin')) %>
       <nav class="main-nav">
         <div class="nav-content">
-          <div class="nav-brand">
-            <%= link_to "Product Onboarding", root_path %>
-          </div>
-          <div class="nav-links" style="display: flex; align-items: center; gap: var(--spacing-md); flex: 1; justify-content: center;">
-            <%= link_to "Home", home_index_path, class: "nav-link" %>
-          </div>
-          <div class="nav-user">
-            <span class="user-greeting">Hello, <%= current_user.name %>!</span>
-            <% if admin? %>
-              <%= link_to "Admin Panel", admin_dashboard_path, class: "nav-link" %>
-            <% end %>
-            <%= link_to "Logout", logout_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to logout?" }, class: "nav-link logout-link" %>
-          </div>
+          <% if request.path == root_path && !logged_in? %>
+            <%# Root path navigation - only login button %>
+            <div class="nav-brand">
+              <%= link_to "Product Onboarding", root_path %>
+            </div>
+            <div class="nav-links" style="display: flex; align-items: center; gap: var(--spacing-md); flex: 1; justify-content: flex-end;">
+              <%= link_to "Login", login_path, class: "btn btn-primary" %>
+            </div>
+          <% elsif logged_in? && !request.path.start_with?('/admin') %>
+            <%# Logged in navigation %>
+            <div class="nav-brand">
+              <%= link_to "Product Onboarding", root_path %>
+            </div>
+            <div class="nav-links" style="display: flex; align-items: center; gap: var(--spacing-md); flex: 1; justify-content: center;">
+              <%= link_to "Home", home_index_path, class: "nav-link" %>
+            </div>
+            <div class="nav-user">
+              <%= link_to home_index_path, class: "user-greeting", style: "text-decoration: none; cursor: pointer;" do %>
+                Hello, <%= current_user.name %>!
+              <% end %>
+              <% if admin? %>
+                <%= link_to "Admin Panel", admin_dashboard_path, class: "nav-link" %>
+              <% end %>
+              <%= link_to "Logout", logout_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to logout?" }, class: "nav-link logout-link" %>
+            </div>
+          <% end %>
         </div>
       </nav>
     <% end %>
     
-    <main class="<%= logged_in? && !request.path.start_with?('/admin') ? 'with-nav' : '' %>">
+    <main class="<%= (request.path == root_path || (logged_in? && !request.path.start_with?('/admin'))) ? 'with-nav' : '' %>">
       <%= yield %>
     </main>
   </body>

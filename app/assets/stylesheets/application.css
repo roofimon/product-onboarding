@@ -252,6 +252,11 @@ h1, h2, h3, h4, h5, h6 {
 .user-greeting {
   color: var(--color-text-secondary);
   font-size: 0.875rem;
+  transition: color 0.2s;
+}
+
+.user-greeting:hover {
+  color: var(--color-primary);
 }
 
 .nav-link {

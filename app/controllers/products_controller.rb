@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :require_login
+  before_action :require_login, except: [:index]
   before_action :set_product, only: [:show]
 
   def index
