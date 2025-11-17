@@ -1,71 +1,400 @@
-<div class="home-container">
-  <div class="home-content">
-    <div style="margin-top: var(--spacing-xl); margin-bottom: var(--spacing-lg);">
-      <%= form_with url: root_path, method: :get, local: true, class: "search-form", style: "max-width: 600px; margin: 0 auto;" do |f| %>
-        <div style="display: flex; gap: var(--spacing-sm);">
+<div class="shopping-container">
+  <!-- Search Bar Section -->
+  <div class="search-section">
+    <div class="search-wrapper">
+      <%= form_with url: root_path, method: :get, local: true, class: "search-form" do |f| %>
+        <div class="search-input-group">
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
           <%= f.text_field :search, 
                 value: params[:search], 
-                placeholder: "Search products by name or description...", 
-                class: "form-input",
-                style: "flex: 1; padding: var(--spacing-md);" %>
-          <%= f.submit "Search", class: "btn btn-primary", style: "white-space: nowrap;" %>
+                placeholder: "Search for products...", 
+                class: "search-input" %>
           <% if params[:search].present? %>
-            <%= link_to "Clear", root_path, class: "btn btn-secondary", style: "white-space: nowrap;" %>
+            <%= link_to root_path, class: "search-clear" do %>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            <% end %>
           <% end %>
+          <%= f.submit "Search", class: "search-btn" %>
         </div>
       <% end %>
     </div>
+  </div>
 
+  <!-- Products Section -->
+  <div class="products-wrapper">
     <% if @products.any? %>
-      <div class="products-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--spacing-lg); margin-top: var(--spacing-xl);">
+      <div class="products-header">
+        <h2 class="products-title">
+          <% if params[:search].present? %>
+            Search Results (<%= @products.count %>)
+          <% else %>
+            All Products (<%= @products.count %>)
+          <% end %>
+        </h2>
+      </div>
+
+      <div class="products-grid">
         <% @products.each do |product| %>
-          <div class="section-card" style="cursor: pointer;" onclick="window.location='<%= public_product_path(product) %>'">
-            <div class="card-icon">
-              <svg width="48" height="48" fill="var(--color-primary)" viewBox="0 0 24 24">
-                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-              </svg>
-            </div>
-            <h3 style="margin-bottom: var(--spacing-sm);"><%= product.name %></h3>
-            <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-md); font-size: 0.875rem;">
-              <%= truncate(product.description, length: 100) %>
-            </p>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: var(--spacing-md); padding-top: var(--spacing-md); border-top: 1px solid var(--color-border);">
-              <div>
-                <div style="font-size: 0.75rem; color: var(--color-text-secondary);">Open Price</div>
-                <div style="font-weight: 600; color: var(--color-primary);">$<%= number_with_precision(product.open_price, precision: 2) %></div>
-              </div>
-              <div>
-                <div style="font-size: 0.75rem; color: var(--color-text-secondary);">Bid Increment</div>
-                <div style="font-weight: 600; color: var(--color-success);">$<%= number_with_precision(product.price_per_bid, precision: 2) %></div>
+          <div class="product-card" onclick="window.location='<%= public_product_path(product) %>'">
+            <div class="product-image">
+              <div class="product-image-placeholder">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="9" y1="3" x2="9" y2="21"></line>
+                  <line x1="3" y1="9" x2="21" y2="9"></line>
+                </svg>
               </div>
             </div>
-            <div style="margin-top: var(--spacing-sm); font-size: 0.75rem; color: var(--color-text-secondary);">
-              By <%= product.user.name %> <%= product.user.surname %>
+            <div class="product-info">
+              <h3 class="product-name"><%= product.name %></h3>
+              <p class="product-description"><%= truncate(product.description, length: 80) %></p>
+              <div class="product-seller">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span><%= product.user.name %> <%= product.user.surname %></span>
+              </div>
+              <div class="product-pricing">
+                <div class="price-main">
+                  <span class="price-label">Starting Price</span>
+                  <span class="price-value">$<%= number_with_precision(product.open_price, precision: 2) %></span>
+                </div>
+                <div class="price-bid">
+                  <span class="bid-label">Bid Increment</span>
+                  <span class="bid-value">+$<%= number_with_precision(product.price_per_bid, precision: 2) %></span>
+                </div>
+              </div>
+              <div class="product-action">
+                <span class="view-details">View Details →</span>
+              </div>
             </div>
           </div>
         <% end %>
       </div>
     <% else %>
-      <div class="content-section" style="text-align: center; padding: var(--spacing-2xl); margin-top: var(--spacing-xl);">
-        <div class="card-icon" style="margin: 0 auto var(--spacing-lg);">
-          <svg width="64" height="64" fill="var(--color-text-secondary)" viewBox="0 0 24 24">
-            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+      <div class="empty-state">
+        <div class="empty-icon">
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="9" y1="3" x2="9" y2="21"></line>
+            <line x1="3" y1="9" x2="21" y2="9"></line>
           </svg>
         </div>
         <% if params[:search].present? %>
-          <h3 style="margin-bottom: var(--spacing-md);">No products found</h3>
-          <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-xl);">
+          <h3 class="empty-title">No products found</h3>
+          <p class="empty-message">
             No products match your search "<strong><%= params[:search] %></strong>"
           </p>
           <%= link_to "Clear search", root_path, class: "btn btn-primary" %>
         <% else %>
-          <h3 style="margin-bottom: var(--spacing-md);">No products yet</h3>
-          <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-xl);">
-            Be the first to register a product!
-          </p>
+          <h3 class="empty-title">No products available</h3>
+          <p class="empty-message">Be the first to register a product!</p>
         <% end %>
       </div>
     <% end %>
   </div>
 </div>
 
+<style>
+.shopping-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-lg);
+  background-color: var(--color-bg);
+  min-height: 100vh;
+}
+
+/* Search Section */
+.search-section {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #0040CC 100%);
+  padding: var(--spacing-2xl) var(--spacing-lg);
+  margin: calc(-1 * var(--spacing-xl)) calc(-1 * var(--spacing-lg)) var(--spacing-2xl);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.search-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.search-form {
+  width: 100%;
+}
+
+.search-input-group {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-sm);
+  box-shadow: var(--shadow-md);
+  gap: var(--spacing-sm);
+}
+
+.search-icon {
+  color: var(--color-text-secondary);
+  margin-left: var(--spacing-md);
+  flex-shrink: 0;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: var(--spacing-md);
+  font-size: 1rem;
+  background: transparent;
+}
+
+.search-input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.search-clear {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-xs);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+
+.search-clear:hover {
+  background-color: var(--color-bg-hover);
+  color: var(--color-text);
+}
+
+.search-btn {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.search-btn:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Products Section */
+.products-wrapper {
+  margin-top: var(--spacing-xl);
+}
+
+.products-header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.products-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-md);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-lg);
+}
+
+/* Product Card */
+.product-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary);
+}
+
+.product-image {
+  width: 100%;
+  height: 220px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-image-placeholder {
+  color: var(--color-text-secondary);
+  opacity: 0.5;
+}
+
+.product-info {
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: var(--spacing-md);
+}
+
+.product-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-description {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-seller {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  margin-top: auto;
+}
+
+.product-seller svg {
+  color: var(--color-text-secondary);
+}
+
+.product-pricing {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-md);
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-md);
+  margin-top: auto;
+}
+
+.price-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.price-label {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.price-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.price-bid {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.bid-label {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+.bid-value {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-success);
+}
+
+.product-action {
+  margin-top: var(--spacing-sm);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.view-details {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  transition: all 0.2s;
+}
+
+.product-card:hover .view-details {
+  color: var(--color-primary-hover);
+  transform: translateX(4px);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: var(--spacing-2xl) var(--spacing-lg);
+  margin-top: var(--spacing-2xl);
+}
+
+.empty-icon {
+  color: var(--color-text-secondary);
+  opacity: 0.3;
+  margin-bottom: var(--spacing-lg);
+}
+
+.empty-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-md);
+}
+
+.empty-message {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-xl);
+}
+
+@media (max-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: var(--spacing-lg);
+  }
+  
+  .search-section {
+    padding: var(--spacing-xl) var(--spacing-md);
+    margin: calc(-1 * var(--spacing-xl)) calc(-1 * var(--spacing-md)) var(--spacing-xl);
+  }
+}
+</style>
