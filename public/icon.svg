@@ -1,3 +1,12 @@
 <svg width="512" height="512" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="256" cy="256" r="256" fill="red"/>
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF8A00;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF6B00;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <circle cx="256" cy="256" r="240" fill="url(#grad)"/>
+  <circle cx="256" cy="256" r="240" fill="none" stroke="#FFFFFF" stroke-width="8" opacity="0.2"/>
+  <text x="256" y="320" font-family="Arial, sans-serif" font-size="180" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="-8">ODT</text>
+  <circle cx="256" cy="180" r="12" fill="#FFFFFF" opacity="0.9"/>
 </svg>
