@@ -37,6 +37,23 @@
             All Products (<%= @products.count %>)
           <% end %>
         </h2>
+        <div class="sort-controls">
+          <%= form_with url: root_path, method: :get, local: true, class: "sort-form" do |f| %>
+            <%= f.hidden_field :search, value: params[:search] if params[:search].present? %>
+            <%= f.label :sort, "Sort by:", class: "sort-label" %>
+            <%= f.select :sort, 
+                  options_for_select([
+                    ['Newest First', ''],
+                    ['Price: Low to High', 'price_low_high'],
+                    ['Price: High to Low', 'price_high_low']
+                  ], params[:sort]),
+                  {},
+                  { 
+                    class: "sort-select",
+                    onchange: "this.form.submit();"
+                  } %>
+          <% end %>
+        </div>
       </div>
 
       <div class="products-grid">
@@ -198,13 +215,59 @@
 
 .products-header {
   margin-bottom: var(--spacing-xl);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
 }
 
 .products-title {
   font-size: 1.75rem;
   font-weight: 700;
   color: var(--color-text);
-  margin-bottom: var(--spacing-md);
+  margin: 0;
+}
+
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.sort-form {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.sort-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.sort-select {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  background: white;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 180px;
+}
+
+.sort-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 82, 255, 0.1);
+}
+
+.sort-select:hover {
+  border-color: var(--color-primary);
 }
 
 .products-grid {
@@ -395,6 +458,20 @@
   .search-section {
     padding: var(--spacing-xl) var(--spacing-md);
     margin: calc(-1 * var(--spacing-xl)) calc(-1 * var(--spacing-md)) var(--spacing-xl);
+  }
+  
+  .products-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .sort-controls {
+    width: 100%;
+  }
+  
+  .sort-select {
+    width: 100%;
+    min-width: auto;
   }
 }
 </style>
