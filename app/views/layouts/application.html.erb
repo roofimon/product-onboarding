@@ -28,11 +28,29 @@
       <nav class="main-nav">
         <div class="nav-content">
           <% if request.path == root_path && !logged_in? %>
-            <%# Root path navigation - only login button %>
+            <%# Root path navigation with search and login %>
             <div class="nav-brand">
               <%= link_to "ODT Auction Platform", root_path %>
             </div>
-            <div class="nav-links" style="display: flex; align-items: center; gap: var(--spacing-md); flex: 1; justify-content: flex-end;">
+            <div class="nav-search">
+              <%= form_with url: root_path, method: :get, local: true, class: "nav-search-form" do |f| %>
+                <div class="nav-search-input">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                  <%= f.text_field :search,
+                        value: params[:search],
+                        placeholder: "Search products...",
+                        class: "nav-search-field" %>
+                  <% if params[:sort].present? %>
+                    <%= f.hidden_field :sort, value: params[:sort] %>
+                  <% end %>
+                  <%= f.submit "Search", class: "nav-search-button" %>
+                </div>
+              <% end %>
+            </div>
+            <div class="nav-links" style="display: flex; align-items: center; gap: var(--spacing-md);">
               <%= link_to "Login", login_path, class: "btn btn-primary" %>
             </div>
           <% elsif logged_in? && !request.path.start_with?('/admin') %>
