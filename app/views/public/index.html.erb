@@ -1,11 +1,20 @@
 <div class="home-container">
   <div class="home-content">
-    <header class="home-header">
-      <div>
-        <h1>ODT Auction Platform</h1>
-        <p class="subtitle">Browse all registered products</p>
-      </div>
-    </header>
+    <div style="margin-top: var(--spacing-xl); margin-bottom: var(--spacing-lg);">
+      <%= form_with url: root_path, method: :get, local: true, class: "search-form", style: "max-width: 600px; margin: 0 auto;" do |f| %>
+        <div style="display: flex; gap: var(--spacing-sm);">
+          <%= f.text_field :search, 
+                value: params[:search], 
+                placeholder: "Search products by name or description...", 
+                class: "form-input",
+                style: "flex: 1; padding: var(--spacing-md);" %>
+          <%= f.submit "Search", class: "btn btn-primary", style: "white-space: nowrap;" %>
+          <% if params[:search].present? %>
+            <%= link_to "Clear", root_path, class: "btn btn-secondary", style: "white-space: nowrap;" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
 
     <% if @products.any? %>
       <div class="products-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--spacing-lg); margin-top: var(--spacing-xl);">
@@ -43,10 +52,18 @@
             <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
           </svg>
         </div>
-        <h3 style="margin-bottom: var(--spacing-md);">No products yet</h3>
-        <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-xl);">
-          Be the first to register a product!
-        </p>
+        <% if params[:search].present? %>
+          <h3 style="margin-bottom: var(--spacing-md);">No products found</h3>
+          <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-xl);">
+            No products match your search "<strong><%= params[:search] %></strong>"
+          </p>
+          <%= link_to "Clear search", root_path, class: "btn btn-primary" %>
+        <% else %>
+          <h3 style="margin-bottom: var(--spacing-md);">No products yet</h3>
+          <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-xl);">
+            Be the first to register a product!
+          </p>
+        <% end %>
       </div>
     <% end %>
   </div>
