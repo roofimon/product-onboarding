@@ -28,9 +28,17 @@
       <nav class="main-nav">
         <div class="nav-content">
           <% if request.path == root_path && !logged_in? %>
-            <%# Root path navigation with search and login %>
+            <%# Root path navigation with logo, search, and login %>
             <div class="nav-brand">
-              <%= link_to "ODT Auction Platform", root_path %>
+              <%= link_to root_path, class: "logo-link" do %>
+                <div class="logo-mark">
+                  <span>ODT</span>
+                </div>
+                <div class="logo-text">
+                  <div class="logo-primary">Auction</div>
+                  <div class="logo-secondary">Marketplace</div>
+                </div>
+              <% end %>
             </div>
             <div class="nav-search">
               <%= form_with url: root_path, method: :get, local: true, class: "nav-search-form" do |f| %>
@@ -50,7 +58,7 @@
                 </div>
               <% end %>
             </div>
-            <div class="nav-links" style="display: flex; align-items: center; gap: var(--spacing-md);">
+            <div class="nav-actions">
               <%= link_to "Login", login_path, class: "btn btn-primary" %>
             </div>
           <% elsif logged_in? && !request.path.start_with?('/admin') %>
