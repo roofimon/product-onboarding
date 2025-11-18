@@ -15,9 +15,9 @@
       <div class="products-header">
         <h2 class="products-title">
           <% if params[:search].present? %>
-            Search Results (<%= @products.count %>)
+            Search Results (<%= @pagy.count %>)
           <% else %>
-            All Products (<%= @products.count %>)
+            All Products (<%= @pagy.count %>)
           <% end %>
         </h2>
         <div class="sort-controls">
@@ -46,6 +46,12 @@
           <% end %>
         <% end %>
       </div>
+
+      <% if @pagy.pages > 1 %>
+        <div class="pagination-wrapper">
+          <%== pagy_nav(@pagy) %>
+        </div>
+      <% end %>
     <% else %>
       <div class="empty-state">
         <div class="empty-icon">
@@ -325,6 +331,65 @@
   font-size: 1rem;
   color: var(--color-text-secondary);
   margin-bottom: var(--spacing-xl);
+}
+
+/* Pagination */
+.pagination-wrapper {
+  margin-top: var(--spacing-2xl);
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-lg) 0;
+}
+
+.pagy-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pagy-nav .page,
+.pagy-nav .prev,
+.pagy-nav .next {
+  display: inline-block;
+}
+
+.pagy-nav a,
+.pagy-nav span {
+  display: inline-block;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  text-decoration: none;
+  transition: all 0.2s;
+  background: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.pagy-nav a:hover {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.pagy-nav .active {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+  cursor: default;
+}
+
+.pagy-nav .disabled {
+  color: var(--color-text-secondary);
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 @media (max-width: 768px) {

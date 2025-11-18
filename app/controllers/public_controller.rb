@@ -22,6 +22,9 @@ class PublicController < ApplicationController
     else
       @products = @products.order(created_at: :desc)
     end
+    
+    # Paginate with 8 items per page
+    @pagy, @products = pagy(:offset, @products, limit: 8)
   end
 
   def show
