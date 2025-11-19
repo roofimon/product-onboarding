@@ -40,7 +40,9 @@
         </div>
         <h3>Your Profile</h3>
         <p>Manage your account settings and personal information.</p>
-        <a href="#" class="card-link">View Profile →</a>
+        <%= link_to profile_path, class: "card-link" do %>
+          View Profile →
+        <% end %>
       </div>
 
       <div class="section-card">
