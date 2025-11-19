@@ -6,12 +6,6 @@
           <h1>ODT Auction Platform</h1>
           <p class="subtitle">Browse all registered products</p>
         </div>
-        <div style="display: flex; align-items: center; gap: var(--spacing-md);">
-          <%= link_to "Back to Home", root_path, class: "btn btn-secondary" %>
-          <% unless logged_in? %>
-            <%= link_to "Login", login_path, class: "btn btn-primary" %>
-          <% end %>
-        </div>
       </div>
     </header>
 
