@@ -7,6 +7,13 @@
           <p class="subtitle">View and manage your account information</p>
         </div>
         <div style="display: flex; align-items: center; gap: var(--spacing-md);">
+          <%= link_to edit_profile_path, class: "btn btn-primary", style: "white-space: nowrap;" do %>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: var(--spacing-xs); vertical-align: middle;">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Edit Profile
+          <% end %>
           <%= link_to home_index_path, class: "btn btn-secondary", style: "white-space: nowrap;" do %>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: var(--spacing-xs); vertical-align: middle;">
               <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -16,6 +23,12 @@
         </div>
       </div>
     </header>
+
+    <% if flash[:notice] %>
+      <div class="alert alert-success" style="max-width: 1200px; margin: 0 auto var(--spacing-xl);">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
 
     <div class="content-section" style="margin-top: var(--spacing-xl);">
       <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--spacing-xl); align-items: start;">

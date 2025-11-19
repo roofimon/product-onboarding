@@ -22,8 +22,10 @@ Rails.application.routes.draw do
   # Home route
   get "home", to: "home#index", as: :home_index
 
-  # Profile route
+  # Profile routes
   get "profile", to: "profiles#show", as: :profile
+  get "profile/edit", to: "profiles#edit", as: :edit_profile
+  patch "profile", to: "profiles#update"
 
   # Public routes
   get "public", to: "public#index", as: :public_index
