@@ -366,71 +366,71 @@ class PublicProductsTest < ApplicationSystemTestCase
     assert_text product.name
   end
 
-#   test "product detail page displays product description" do
-#     product = products(:vintage_watch)
-#     visit public_product_path(product)
+  test "product detail page displays product description" do
+    product = products(:vintage_watch)
+    visit public_product_path(product)
 
-#     assert_text product.description
-#   end
+    assert_text product.description
+  end
 
-#   test "product detail page displays seller information" do
-#     product = products(:vintage_watch)
-#     visit public_product_path(product)
+  test "product detail page displays seller information" do
+    product = products(:vintage_watch)
+    visit public_product_path(product)
 
-#     assert_text product.user.name
-#     assert_text product.user.surname
-#     assert_text product.user.email
-#   end
+    assert_text product.user.name
+    assert_text product.user.surname
+    assert_text product.user.email
+  end
 
-#   test "product detail page displays registration date" do
-#     product = products(:vintage_watch)
-#     visit public_product_path(product)
+  test "product detail page displays registration date" do
+    product = products(:vintage_watch)
+    visit public_product_path(product)
 
-#     assert_text "Registered On"
-#     # Date format: "January 01, 2024 at 12:00 PM"
-#     assert_match /\w+ \d+, \d{4} at \d+:\d+ [AP]M/, page.text
-#   end
+    assert_text "Registered On"
+    # Date format: "January 01, 2024 at 12:00 PM"
+    assert_match /\w+ \d+, \d{4} at \d+:\d+ [AP]M/, page.text
+  end
 
-#   test "product detail page displays product image or placeholder" do
-#     product = products(:vintage_watch)
-#     visit public_product_path(product)
+  test "product detail page displays product image or placeholder" do
+    product = products(:vintage_watch)
+    visit public_product_path(product)
 
-#     # Either image or placeholder should be present
-#     has_image = has_selector?("img[alt*='#{product.name}']", wait: false)
-#     has_svg = has_selector?("svg", wait: false)
-#     assert has_image || has_svg, "Expected either product image or placeholder SVG"
-#   end
+    # Either image or placeholder should be present
+    has_image = has_selector?("img[alt*='#{product.name}']", wait: false)
+    has_svg = has_selector?("svg", wait: false)
+    assert has_image || has_svg, "Expected either product image or placeholder SVG"
+  end
 
-#   test "product detail page displays open price correctly formatted" do
-#     product = products(:vintage_watch)
-#     visit public_product_path(product)
+  test "product detail page displays open price correctly formatted" do
+    product = products(:vintage_watch)
+    visit public_product_path(product)
 
-#     assert_text "$1,500.00"
-#     assert_text "Starting bid amount"
-#   end
+    assert_text "$1500.00"
+    assert_text "Starting bid amount"
+  end
 
-#   test "product detail page displays price per bid correctly formatted" do
-#     product = products(:vintage_watch)
-#     visit public_product_path(product)
+  test "product detail page displays price per bid correctly formatted" do
+    product = products(:vintage_watch)
+    visit public_product_path(product)
 
-#     assert_text "$50.00"
-#     assert_text "Minimum increment per bid"
-#   end
+    assert_text "$50.00"
+    assert_text "Minimum increment per bid"
+  end
 
-#   test "product detail page displays pricing section" do
-#     product = products(:vintage_watch)
-#     visit public_product_path(product)
+  test "product detail page displays pricing section" do
+    product = products(:vintage_watch)
+    visit public_product_path(product)
 
-#     assert_text "Pricing Information"
-#     assert_selector "[data-testid='public-product-show-pricing-card']"
-#   end
+    assert_text "Pricing Information"
+    assert_selector "[data-testid='public-product-show-pricing-card']"
+  end
 
-#   test "product detail page URL is correct" do
-#     product = products(:vintage_watch)
-#     visit public_product_path(product)
+  test "product detail page URL is correct" do
+    product = products(:vintage_watch)
+    visit public_product_path(product)
 
-#     assert_current_path public_product_path(product)
-#     assert_match %r{/public/products/\d+}, current_path
-#   end
+    assert_current_path public_product_path(product)
+    assert_match %r{/public/products/\d+}, current_path
+  end
 end
 
