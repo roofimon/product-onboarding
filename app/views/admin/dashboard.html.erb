@@ -1,13 +1,13 @@
-<div class="admin-layout" data-testid="admin-dashboard-layout">
+<div class="admin-layout" dashboard-layout">
   <!-- Sidebar -->
-  <div class="admin-sidebar" data-testid="admin-sidebar">
-    <div class="admin-logo" data-testid="admin-logo">
-      <h2 data-testid="admin-logo-title">Admin Panel</h2>
+  <div class="admin-sidebar" sidebar">
+    <div class="admin-logo" logo">
+      <h2 logo-title">Admin Panel</h2>
     </div>
     
-    <nav class="admin-nav" data-testid="admin-nav">
-      <ul data-testid="admin-nav-list">
-        <li class="nav-item active" data-testid="admin-nav-dashboard-item">
+    <nav class="admin-nav" nav">
+      <ul nav-list">
+        <li class="nav-item active" nav-dashboard-item">
           <%= link_to admin_dashboard_path, class: "nav-link", id: "admin-nav-dashboard-link" do %>
             <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
               <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
@@ -16,7 +16,7 @@
           <% end %>
         </li>
         <% if admin? %>
-          <li class="nav-item" data-testid="admin-nav-users-item">
+          <li class="nav-item" nav-users-item">
             <%= link_to admin_users_path, class: "nav-link", id: "admin-nav-users-link" do %>
               <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
@@ -25,16 +25,16 @@
             <% end %>
           </li>
         <% end %>
-        <li class="nav-item" data-testid="admin-nav-analytics-item">
-          <a href="#" class="nav-link" data-testid="admin-nav-analytics-link">
+        <li class="nav-item" nav-analytics-item">
+          <a href="#" class="nav-link" nav-analytics-link">
             <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
               <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
             </svg>
             Analytics
           </a>
         </li>
-        <li class="nav-item" data-testid="admin-nav-settings-item">
-          <a href="#" class="nav-link" data-testid="admin-nav-settings-link">
+        <li class="nav-item" nav-settings-item">
+          <a href="#" class="nav-link" nav-settings-link">
             <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
               <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/>
             </svg>
@@ -44,25 +44,25 @@
       </ul>
     </nav>
 
-    <div class="admin-user" data-testid="admin-user">
-      <div class="user-info" data-testid="admin-user-info">
-        <div class="user-avatar" data-testid="admin-user-avatar">
+    <div class="admin-user" user">
+      <div class="user-info" user-info">
+        <div class="user-avatar" user-avatar">
           <%= current_user.name.first.upcase %>
         </div>
-        <div class="user-details" data-testid="admin-user-details">
-          <div class="user-name" data-testid="admin-user-name"><%= current_user.name %> <%= current_user.surname %></div>
-          <div class="user-role" data-testid="admin-user-role">Administrator</div>
+        <div class="user-details" user-details">
+          <div class="user-name" user-name"><%= current_user.name %> <%= current_user.surname %></div>
+          <div class="user-role" user-role">Administrator</div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Main Content -->
-  <div class="admin-main" data-testid="admin-main">
-    <header class="admin-header" data-testid="admin-header">
-      <h1 data-testid="admin-header-title">Dashboard</h1>
-      <div class="header-actions" data-testid="admin-header-actions">
-        <span class="welcome-text" data-testid="admin-header-welcome">Welcome back, <%= current_user.name %>!</span>
+  <div class="admin-main" main">
+    <header class="admin-header" header">
+      <h1 header-title">Dashboard</h1>
+      <div class="header-actions" header-actions">
+        <span class="welcome-text" header-welcome">Welcome back, <%= current_user.name %>!</span>
         <%= link_to logout_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to logout?" }, class: "btn btn-secondary", id: "admin-header-logout-button", style: "margin-left: var(--spacing-md); white-space: nowrap;" do %>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: var(--spacing-xs); vertical-align: middle;">
             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -72,109 +72,109 @@
       </div>
     </header>
 
-    <div class="admin-content" data-testid="admin-content">
+    <div class="admin-content" content">
       <!-- Stats Cards -->
-      <div class="stats-grid" data-testid="admin-stats-grid">
-        <div class="stat-card" data-testid="admin-stat-total-users">
-          <div class="stat-icon bg-primary" data-testid="admin-stat-total-users-icon">
+      <div class="stats-grid" stats-grid">
+        <div class="stat-card" stat-total-users">
+          <div class="stat-icon bg-primary" stat-total-users-icon">
             <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
               <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
             </svg>
           </div>
-          <div class="stat-content" data-testid="admin-stat-total-users-content">
-            <h3 data-testid="admin-stat-total-users-value"><%= @users_count %></h3>
-            <p data-testid="admin-stat-total-users-label">Total Users</p>
+          <div class="stat-content" stat-total-users-content">
+            <h3 stat-total-users-value"><%= @users_count %></h3>
+            <p stat-total-users-label">Total Users</p>
           </div>
         </div>
 
-        <div class="stat-card" data-testid="admin-stat-admin-users">
-          <div class="stat-icon bg-success" data-testid="admin-stat-admin-users-icon">
+        <div class="stat-card" stat-admin-users">
+          <div class="stat-icon bg-success" stat-admin-users-icon">
             <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
               <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
           </div>
-          <div class="stat-content" data-testid="admin-stat-admin-users-content">
-            <h3 data-testid="admin-stat-admin-users-value"><%= @admin_users_count %></h3>
-            <p data-testid="admin-stat-admin-users-label">Administrators</p>
+          <div class="stat-content" stat-admin-users-content">
+            <h3 stat-admin-users-value"><%= @admin_users_count %></h3>
+            <p stat-admin-users-label">Administrators</p>
           </div>
         </div>
 
-        <div class="stat-card" data-testid="admin-stat-regular-users">
-          <div class="stat-icon bg-warning" data-testid="admin-stat-regular-users-icon">
+        <div class="stat-card" stat-regular-users">
+          <div class="stat-icon bg-warning" stat-regular-users-icon">
             <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
               <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
             </svg>
           </div>
-          <div class="stat-content" data-testid="admin-stat-regular-users-content">
-            <h3 data-testid="admin-stat-regular-users-value"><%= @regular_users_count %></h3>
-            <p data-testid="admin-stat-regular-users-label">Regular Users</p>
+          <div class="stat-content" stat-regular-users-content">
+            <h3 stat-regular-users-value"><%= @regular_users_count %></h3>
+            <p stat-regular-users-label">Regular Users</p>
           </div>
         </div>
 
-        <div class="stat-card" data-testid="admin-stat-waiting-approval">
-          <div class="stat-icon bg-info" data-testid="admin-stat-waiting-approval-icon">
+        <div class="stat-card" stat-waiting-approval">
+          <div class="stat-icon bg-info" stat-waiting-approval-icon">
             <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
             </svg>
           </div>
-          <div class="stat-content" data-testid="admin-stat-waiting-approval-content">
-            <h3 data-testid="admin-stat-waiting-approval-value"><%= @waiting_approval_count %></h3>
-            <p data-testid="admin-stat-waiting-approval-label">Waiting Approval</p>
+          <div class="stat-content" stat-waiting-approval-content">
+            <h3 stat-waiting-approval-value"><%= @waiting_approval_count %></h3>
+            <p stat-waiting-approval-label">Waiting Approval</p>
           </div>
         </div>
       </div>
 
       <!-- Quick Link to Users -->
-      <div class="content-section" data-testid="admin-user-management-section">
-        <div class="section-header" data-testid="admin-user-management-header">
-          <h2 data-testid="admin-user-management-title">User Management</h2>
+      <div class="content-section" user-management-section">
+        <div class="section-header" user-management-header">
+          <h2 user-management-title">User Management</h2>
           <%= link_to "View All Users", admin_users_path, class: "btn btn-primary btn-sm", id: "admin-user-management-link" %>
         </div>
-        <p style="color: var(--color-text-secondary); margin-top: var(--spacing-md);" data-testid="admin-user-management-description">
+        <p style="color: var(--color-text-secondary); margin-top: var(--spacing-md);" user-management-description">
           Manage all users, approve pending registrations, and view user statuses.
         </p>
       </div>
 
       <!-- Quick Actions -->
-      <div class="content-section" data-testid="admin-quick-actions-section">
-        <div class="section-header" data-testid="admin-quick-actions-header">
-          <h2 data-testid="admin-quick-actions-title">Quick Actions</h2>
+      <div class="content-section" quick-actions-section">
+        <div class="section-header" quick-actions-header">
+          <h2 quick-actions-title">Quick Actions</h2>
         </div>
         
-        <div class="quick-actions" data-testid="admin-quick-actions">
-          <a href="#" class="action-card" data-testid="admin-quick-action-add-user">
-            <div class="action-icon bg-primary" data-testid="admin-quick-action-add-user-icon">
+        <div class="quick-actions" quick-actions">
+          <a href="#" class="action-card" quick-action-add-user">
+            <div class="action-icon bg-primary" quick-action-add-user-icon">
               <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
                 <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
               </svg>
             </div>
-            <div class="action-content" data-testid="admin-quick-action-add-user-content">
-              <h3 data-testid="admin-quick-action-add-user-title">Add User</h3>
-              <p data-testid="admin-quick-action-add-user-description">Create a new user account</p>
+            <div class="action-content" quick-action-add-user-content">
+              <h3 quick-action-add-user-title">Add User</h3>
+              <p quick-action-add-user-description">Create a new user account</p>
             </div>
           </a>
 
-          <a href="#" class="action-card" data-testid="admin-quick-action-system-check">
-            <div class="action-icon bg-success" data-testid="admin-quick-action-system-check-icon">
+          <a href="#" class="action-card" quick-action-system-check">
+            <div class="action-icon bg-success" quick-action-system-check-icon">
               <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
                 <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
             </div>
-            <div class="action-content" data-testid="admin-quick-action-system-check-content">
-              <h3 data-testid="admin-quick-action-system-check-title">System Check</h3>
-              <p data-testid="admin-quick-action-system-check-description">Run system diagnostics</p>
+            <div class="action-content" quick-action-system-check-content">
+              <h3 quick-action-system-check-title">System Check</h3>
+              <p quick-action-system-check-description">Run system diagnostics</p>
             </div>
           </a>
 
-          <a href="#" class="action-card" data-testid="admin-quick-action-reports">
-            <div class="action-icon bg-warning" data-testid="admin-quick-action-reports-icon">
+          <a href="#" class="action-card" quick-action-reports">
+            <div class="action-icon bg-warning" quick-action-reports-icon">
               <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
             </div>
-            <div class="action-content" data-testid="admin-quick-action-reports-content">
-              <h3 data-testid="admin-quick-action-reports-title">Reports</h3>
-              <p data-testid="admin-quick-action-reports-description">Generate system reports</p>
+            <div class="action-content" quick-action-reports-content">
+              <h3 quick-action-reports-title">Reports</h3>
+              <p quick-action-reports-description">Generate system reports</p>
             </div>
           </a>
         </div>

@@ -23,11 +23,12 @@ Rails.application.routes.draw do
   get "home", to: "home#index", as: :home_index
 
   # Profile routes
-  get "profile", to: "profiles#show", as: :profile
-  get "profile/edit", to: "profiles#edit", as: :edit_profile
-  patch "profile", to: "profiles#update"
-  get "profile/reset_password", to: "profiles#reset_password", as: :reset_password_profile
-  patch "profile/reset_password", to: "profiles#update_password"
+  resource :profile, only: [:show, :edit, :update] do
+    member do
+      get :edit_password
+      patch :update_password
+    end
+  end
 
   # Public routes
   get "public", to: "public#index", as: :public_index

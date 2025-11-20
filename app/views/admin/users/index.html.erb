@@ -1,13 +1,13 @@
-<div class="admin-layout" data-testid="admin-users-layout">
+<div class="admin-layout" users-layout">
   <!-- Sidebar -->
-  <div class="admin-sidebar" data-testid="admin-sidebar">
-    <div class="admin-logo" data-testid="admin-logo">
-      <h2 data-testid="admin-logo-title">Admin Panel</h2>
+  <div class="admin-sidebar" sidebar">
+    <div class="admin-logo" logo">
+      <h2 logo-title">Admin Panel</h2>
     </div>
     
-    <nav class="admin-nav" data-testid="admin-nav">
-      <ul data-testid="admin-nav-list">
-        <li class="nav-item" data-testid="admin-nav-dashboard-item">
+    <nav class="admin-nav" nav">
+      <ul nav-list">
+        <li class="nav-item" nav-dashboard-item">
           <%= link_to admin_dashboard_path, class: "nav-link", id: "admin-nav-dashboard-link" do %>
             <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
               <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
@@ -16,7 +16,7 @@
           <% end %>
         </li>
         <% if admin? %>
-          <li class="nav-item active" data-testid="admin-nav-users-item">
+          <li class="nav-item active" nav-users-item">
             <%= link_to admin_users_path, class: "nav-link", id: "admin-nav-users-link" do %>
               <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
@@ -25,16 +25,16 @@
             <% end %>
           </li>
         <% end %>
-        <li class="nav-item" data-testid="admin-nav-analytics-item">
-          <a href="#" class="nav-link" data-testid="admin-nav-analytics-link">
+        <li class="nav-item" nav-analytics-item">
+          <a href="#" class="nav-link" nav-analytics-link">
             <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
               <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
             </svg>
             Analytics
           </a>
         </li>
-        <li class="nav-item" data-testid="admin-nav-settings-item">
-          <a href="#" class="nav-link" data-testid="admin-nav-settings-link">
+        <li class="nav-item" nav-settings-item">
+          <a href="#" class="nav-link" nav-settings-link">
             <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
               <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/>
             </svg>
@@ -44,25 +44,25 @@
       </ul>
     </nav>
 
-    <div class="admin-user" data-testid="admin-user">
-      <div class="user-info" data-testid="admin-user-info">
-        <div class="user-avatar" data-testid="admin-user-avatar">
+    <div class="admin-user" user">
+      <div class="user-info" user-info">
+        <div class="user-avatar" user-avatar">
           <%= current_user.name.first.upcase %>
         </div>
-        <div class="user-details" data-testid="admin-user-details">
-          <div class="user-name" data-testid="admin-user-name"><%= current_user.name %> <%= current_user.surname %></div>
-          <div class="user-role" data-testid="admin-user-role">Administrator</div>
+        <div class="user-details" user-details">
+          <div class="user-name" user-name"><%= current_user.name %> <%= current_user.surname %></div>
+          <div class="user-role" user-role">Administrator</div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Main Content -->
-  <div class="admin-main" data-testid="admin-main">
-    <header class="admin-header" data-testid="admin-header">
-      <h1 data-testid="admin-header-title">Users</h1>
-      <div class="header-actions" data-testid="admin-header-actions">
-        <span class="welcome-text" data-testid="admin-header-welcome">Manage all users</span>
+  <div class="admin-main" main">
+    <header class="admin-header" header">
+      <h1 header-title">Users</h1>
+      <div class="header-actions" header-actions">
+        <span class="welcome-text" header-welcome">Manage all users</span>
         <%= link_to logout_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to logout?" }, class: "btn btn-secondary", id: "admin-header-logout-button", style: "margin-left: var(--spacing-md); white-space: nowrap;" do %>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: var(--spacing-xs); vertical-align: middle;">
             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -72,49 +72,49 @@
       </div>
     </header>
 
-    <div class="admin-content" data-testid="admin-content">
+    <div class="admin-content" content">
       <!-- Filters and Table Header -->
-      <div class="content-section" data-testid="admin-users-content-section">
-        <div class="section-header" data-testid="admin-users-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg); padding-bottom: var(--spacing-md); border-bottom: 2px solid var(--color-border);">
-          <div data-testid="admin-users-header-info">
-            <h2 style="margin-bottom: var(--spacing-xs);" data-testid="admin-users-title">User Management</h2>
-            <p style="color: var(--color-text-secondary); font-size: 0.875rem; margin: 0;" data-testid="admin-users-count">
+      <div class="content-section" users-content-section">
+        <div class="section-header" users-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg); padding-bottom: var(--spacing-md); border-bottom: 2px solid var(--color-border);">
+          <div users-header-info">
+            <h2 style="margin-bottom: var(--spacing-xs);" users-title">User Management</h2>
+            <p style="color: var(--color-text-secondary); font-size: 0.875rem; margin: 0;" users-count">
               Showing <%= @users.count %> <%= params[:status].present? ? params[:status].humanize.downcase : 'total' %> user<%= @users.count != 1 ? 's' : '' %>
             </p>
           </div>
-          <div class="filters" data-testid="admin-users-filters" style="display: flex; gap: var(--spacing-sm); flex-wrap: wrap;">
+          <div class="filters" users-filters" style="display: flex; gap: var(--spacing-sm); flex-wrap: wrap;">
             <%= link_to admin_users_path, class: "filter-link #{'active' if params[:status].blank?}", id: "admin-users-filter-all" do %>
               <span>All</span>
-              <span class="filter-count" data-testid="admin-users-filter-all-count"><%= @total_count %></span>
+              <span class="filter-count" users-filter-all-count"><%= @total_count %></span>
             <% end %>
             <%= link_to admin_users_path(status: 'waiting_for_approve'), class: "filter-link #{'active' if params[:status] == 'waiting_for_approve'}", id: "admin-users-filter-waiting" do %>
               <span>Waiting</span>
-              <span class="filter-count" data-testid="admin-users-filter-waiting-count"><%= @waiting_count %></span>
+              <span class="filter-count" users-filter-waiting-count"><%= @waiting_count %></span>
             <% end %>
             <%= link_to admin_users_path(status: 'active'), class: "filter-link #{'active' if params[:status] == 'active'}", id: "admin-users-filter-active" do %>
               <span>Active</span>
-              <span class="filter-count" data-testid="admin-users-filter-active-count"><%= @active_count %></span>
+              <span class="filter-count" users-filter-active-count"><%= @active_count %></span>
             <% end %>
             <%= link_to admin_users_path(status: 'inactive'), class: "filter-link #{'active' if params[:status] == 'inactive'}", id: "admin-users-filter-inactive" do %>
               <span>Inactive</span>
-              <span class="filter-count" data-testid="admin-users-filter-inactive-count"><%= @inactive_count %></span>
+              <span class="filter-count" users-filter-inactive-count"><%= @inactive_count %></span>
             <% end %>
           </div>
         </div>
         
-        <div class="data-table" data-testid="admin-users-table">
-          <table data-testid="admin-users-table-element">
-            <thead data-testid="admin-users-table-head">
-              <tr data-testid="admin-users-table-head-row">
-                <th data-testid="admin-users-table-head-name">Name</th>
-                <th data-testid="admin-users-table-head-email">Email</th>
-                <th data-testid="admin-users-table-head-role">Role</th>
-                <th data-testid="admin-users-table-head-status">Status</th>
-                <th data-testid="admin-users-table-head-joined">Joined</th>
-                <th data-testid="admin-users-table-head-actions">Actions</th>
+        <div class="data-table" users-table">
+          <table users-table-element">
+            <thead users-table-head">
+              <tr users-table-head-row">
+                <th users-table-head-name">Name</th>
+                <th users-table-head-email">Email</th>
+                <th users-table-head-role">Role</th>
+                <th users-table-head-status">Status</th>
+                <th users-table-head-joined">Joined</th>
+                <th users-table-head-actions">Actions</th>
               </tr>
             </thead>
-            <tbody data-testid="admin-users-table-body">
+            <tbody users-table-body">
               <% if @users.any? %>
                 <% @users.each do |user| %>
                   <tr id="<%= dom_id(user, :row) %>">
@@ -184,8 +184,8 @@
                   </tr>
                 <% end %>
               <% else %>
-                <tr data-testid="admin-users-empty-row">
-                  <td colspan="6" data-testid="admin-users-empty-message" style="text-align: center; padding: var(--spacing-xl); color: var(--color-text-secondary);">
+                <tr users-empty-row">
+                  <td colspan="6" users-empty-message" style="text-align: center; padding: var(--spacing-xl); color: var(--color-text-secondary);">
                     No users found.
                   </td>
                 </tr>

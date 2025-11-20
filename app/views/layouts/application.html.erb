@@ -28,24 +28,24 @@
     <%# Check if we're in PublicController or on root path (pagination URLs like /?page=2 still have path='/') %>
     <% public_area = controller.controller_name == 'public' || request.path == root_path || request.path == '/' || request.path.start_with?('/public/products/') %>
     <% if public_area || (logged_in? && !request.path.start_with?('/admin')) %>
-      <nav class="main-nav" data-testid="main-nav">
-        <div class="nav-content" data-testid="nav-content">
+      <nav class="main-nav">
+        <div class="nav-content">
           <% if public_area && !logged_in? %>
             <%# Public area navigation with logo, search, and login %>
-            <div class="nav-brand" data-testid="nav-brand">
-              <%= link_to root_path, class: "logo-link", data: { testid: "logo-link" } do %>
-                <div class="logo-mark" data-testid="logo-mark">
+            <div class="nav-brand">
+              <%= link_to root_path, class: "logo-link" do %>
+                <div class="logo-mark">
                   <span>ODT</span>
                 </div>
-                <div class="logo-text" data-testid="logo-text">
-                  <div class="logo-primary" data-testid="logo-primary">Auction</div>
-                  <div class="logo-secondary" data-testid="logo-secondary">Marketplace</div>
+                <div class="logo-text">
+                  <div class="logo-primary">Auction</div>
+                  <div class="logo-secondary">Marketplace</div>
                 </div>
               <% end %>
             </div>
-            <div class="nav-search" data-testid="nav-search">
+            <div class="nav-search">
               <%= form_with url: root_path, method: :get, local: true, class: "nav-search-form", data: { testid: "nav-search-form" } do |f| %>
-                <div class="nav-search-input" data-testid="nav-search-input">
+                <div class="nav-search-input">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="11" cy="11" r="8"></circle>
                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -62,33 +62,33 @@
                 </div>
               <% end %>
             </div>
-            <div class="nav-actions" data-testid="nav-actions">
-              <%= link_to "Login", login_path, class: "btn btn-primary", data: { testid: "nav-login-button" } %>
+            <div class="nav-actions">
+              <%= link_to "Login", login_path, class: "btn btn-primary" %>
             </div>
           <% elsif logged_in? && !request.path.start_with?('/admin') %>
             <%# Logged in navigation %>
-            <div class="nav-brand" data-testid="nav-brand">
-              <%= link_to "ODT Auction Platform", root_path, data: { testid: "nav-brand-link" } %>
+            <div class="nav-brand">
+              <%= link_to "ODT Auction Platform", root_path %>
             </div>
-            <div class="nav-links" data-testid="nav-links">
-              <%= link_to "Home", home_index_path, class: "nav-link", data: { testid: "nav-link-home" } %>
+            <div class="nav-links">
+              <%= link_to "Home", home_index_path, class: "nav-link" %>
             </div>
-            <div class="nav-user" data-testid="nav-user">
-              <%= link_to home_index_path, class: "user-greeting", data: { testid: "user-greeting" } do %>
+            <div class="nav-user">
+              <%= link_to home_index_path, class: "user-greeting" do %>
                 Hello, <%= current_user.name %>!
               <% end %>
               <% if admin? %>
-                <%= link_to "Admin Panel", admin_dashboard_path, class: "nav-link", data: { testid: "nav-link-admin" } %>
+                <%= link_to "Admin Panel", admin_dashboard_path, class: "nav-link" %>
               <% end %>
 
-              <%= link_to home_index_path, class: "btn btn-secondary", data: { testid: "nav-back-dashboard-button" } do %>
+              <%= link_to home_index_path, class: "btn btn-secondary" do %>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 Back to Dashboard
               <% end %>
 
-              <%= link_to logout_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to logout?", testid: "nav-logout-button" }, class: "btn btn-danger" do %>
+              <%= link_to logout_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to logout?" }, class: "btn btn-danger" do %>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg>
@@ -97,20 +97,20 @@
             </div>
           <% elsif public_area && logged_in? %>
             <%# Logged in user viewing public area %>
-            <div class="nav-brand" data-testid="nav-brand">
-              <%= link_to root_path, class: "logo-link", data: { testid: "logo-link" } do %>
-                <div class="logo-mark" data-testid="logo-mark">
+            <div class="nav-brand">
+              <%= link_to root_path, class: "logo-link" do %>
+                <div class="logo-mark">
                   <span>ODT</span>
                 </div>
-                <div class="logo-text" data-testid="logo-text">
-                  <div class="logo-primary" data-testid="logo-primary">Auction</div>
-                  <div class="logo-secondary" data-testid="logo-secondary">Marketplace</div>
+                <div class="logo-text">
+                  <div class="logo-primary">Auction</div>
+                  <div class="logo-secondary">Marketplace</div>
                 </div>
               <% end %>
             </div>
-            <div class="nav-search" data-testid="nav-search">
+            <div class="nav-search">
               <%= form_with url: root_path, method: :get, local: true, class: "nav-search-form", data: { testid: "nav-search-form" } do |f| %>
-                <div class="nav-search-input" data-testid="nav-search-input">
+                <div class="nav-search-input">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="11" cy="11" r="8"></circle>
                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -127,21 +127,21 @@
                 </div>
               <% end %>
             </div>
-            <div class="nav-user" data-testid="nav-user">
-              <%= link_to home_index_path, class: "user-greeting", data: { testid: "user-greeting" } do %>
+            <div class="nav-user">
+              <%= link_to home_index_path, class: "user-greeting" do %>
                 Hello, <%= current_user.name %>!
               <% end %>
               <% if admin? %>
-                <%= link_to "Admin Panel", admin_dashboard_path, class: "nav-link", data: { testid: "nav-link-admin" } %>
+                <%= link_to "Admin Panel", admin_dashboard_path, class: "nav-link" %>
               <% end %>
-              <%= link_to "Logout", logout_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to logout?", testid: "nav-logout-link" }, class: "nav-link logout-link" %>
+              <%= link_to "Logout", logout_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to logout?" }, class: "nav-link logout-link" %>
             </div>
           <% end %>
         </div>
       </nav>
     <% end %>
     
-    <main class="<%= (public_area || (logged_in? && !request.path.start_with?('/admin'))) ? 'with-nav' : '' %>" data-testid="main-content">
+    <main class="<%= (public_area || (logged_in? && !request.path.start_with?('/admin'))) ? 'with-nav' : '' %>">
       <%= yield %>
     </main>
   </body>

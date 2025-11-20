@@ -1,60 +1,60 @@
-<div class="home-container" data-testid="profile-show-container">
-  <div class="home-content" data-testid="profile-show-content">
-    <header class="home-header" data-testid="profile-show-header">
+<div class="home-container">
+  <div class="home-content">
+    <header class="home-header">
       <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
         <div>
-          <h1 data-testid="profile-show-title">Your Profile</h1>
-          <p class="subtitle" data-testid="profile-show-subtitle">View and manage your account information</p>
+          <h1>Your Profile</h1>
+          <p class="subtitle">View and manage your account information</p>
         </div>
         <div style="display: flex; align-items: center; gap: var(--spacing-md);">
-          <%= link_to edit_profile_path, class: "btn btn-primary", data: { testid: "profile-show-edit-button" }, style: "white-space: nowrap;" do %>
+          <%= link_to edit_profile_path, class: "btn btn-primary", style: "white-space: nowrap;" do %>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: var(--spacing-xs); vertical-align: middle;">
               <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             Edit Profile
           <% end %>
-          <%= link_to reset_password_profile_path, class: "btn btn-secondary", data: { testid: "profile-show-reset-password-button" }, style: "white-space: nowrap;" do %>
+          <%= link_to edit_password_profile_path, class: "btn btn-secondary", style: "white-space: nowrap;" do %>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: var(--spacing-xs); vertical-align: middle;">
               <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            Reset Password
+            Change Password
           <% end %>
         </div>
       </div>
     </header>
 
     <% if flash[:notice] %>
-      <div class="alert alert-success" data-testid="profile-show-notice" style="max-width: 1200px; margin: 0 auto var(--spacing-xl);">
+      <div class="alert alert-success" style="max-width: 1200px; margin: 0 auto var(--spacing-xl);">
         <%= flash[:notice] %>
       </div>
     <% end %>
 
-    <div class="content-section" data-testid="profile-show-content-section" style="margin-top: var(--spacing-xl);">
+    <div class="content-section" style="margin-top: var(--spacing-xl);">
       <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--spacing-xl); align-items: start;">
         <!-- Personal Information Card -->
-        <div class="section-card" data-testid="profile-show-personal-info-card" style="text-align: left;">
-          <div style="display: flex; align-items: center; gap: var(--spacing-lg); margin-bottom: var(--spacing-xl);" data-testid="profile-show-header-info">
-            <div class="user-avatar" data-testid="profile-show-avatar" style="width: 80px; height: 80px; font-size: 2rem;">
+        <div class="section-card" style="text-align: left;">
+          <div style="display: flex; align-items: center; gap: var(--spacing-lg); margin-bottom: var(--spacing-xl);">
+            <div class="user-avatar" style="width: 80px; height: 80px; font-size: 2rem;">
               <%= @user.name.first.upcase %>
             </div>
-            <div data-testid="profile-show-header-details">
-              <h2 style="margin: 0 0 var(--spacing-xs) 0; font-size: 1.5rem;" data-testid="profile-show-header-name"><%= @user.name %> <%= @user.surname %></h2>
-              <p style="color: var(--color-text-secondary); margin: 0;" data-testid="profile-show-header-email"><%= @user.email %></p>
+            <div>
+              <h2 style="margin: 0 0 var(--spacing-xs) 0; font-size: 1.5rem;"><%= @user.name %> <%= @user.surname %></h2>
+              <p style="color: var(--color-text-secondary); margin: 0;"><%= @user.email %></p>
             </div>
           </div>
 
-          <div style="margin-bottom: var(--spacing-lg);" data-testid="profile-show-full-name-section">
+          <div style="margin-bottom: var(--spacing-lg);">
             <div style="font-size: 0.875rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-xs);">Full Name</div>
-            <div style="font-size: 1.125rem; font-weight: 600;" data-testid="profile-show-full-name"><%= @user.name %> <%= @user.surname %></div>
+            <div style="font-size: 1.125rem; font-weight: 600;"><%= @user.name %> <%= @user.surname %></div>
           </div>
 
-          <div style="margin-bottom: var(--spacing-lg);" data-testid="profile-show-email-section">
+          <div style="margin-bottom: var(--spacing-lg);">
             <div style="font-size: 0.875rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-xs);">Email Address</div>
-            <div style="font-size: 1.125rem; font-weight: 500;" data-testid="profile-show-email"><%= @user.email %></div>
+            <div style="font-size: 1.125rem; font-weight: 500;"><%= @user.email %></div>
           </div>
 
-          <div style="margin-bottom: var(--spacing-lg);" data-testid="profile-show-status-section">
+          <div style="margin-bottom: var(--spacing-lg);">
             <div style="font-size: 0.875rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-xs);">Account Status</div>
             <span class="badge <%= case @user.status.to_sym
               when :waiting_for_approve
@@ -65,50 +65,50 @@
                 'badge-danger'
               else
                 'badge-secondary'
-              end %>" data-testid="profile-show-status-badge">
+              end %>">
               <%= @user.status.humanize.titleize %>
             </span>
           </div>
 
           <% if @user.admin? %>
-            <div style="margin-bottom: var(--spacing-lg);" data-testid="profile-show-role-section">
+            <div style="margin-bottom: var(--spacing-lg);">
               <div style="font-size: 0.875rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-xs);">Role</div>
-              <span class="badge badge-primary" data-testid="profile-show-role-badge">Admin</span>
+              <span class="badge badge-primary">Admin</span>
             </div>
           <% end %>
 
-          <div style="margin-bottom: var(--spacing-lg);" data-testid="profile-show-member-since-section">
+          <div style="margin-bottom: var(--spacing-lg);">
             <div style="font-size: 0.875rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-xs);">Member Since</div>
-            <div data-testid="profile-show-member-since"><%= @user.created_at.strftime('%B %d, %Y') %></div>
+            <div><%= @user.created_at.strftime('%B %d, %Y') %></div>
           </div>
         </div>
 
         <!-- Statistics Card -->
-        <div data-testid="profile-show-statistics">
-          <div class="section-card" data-testid="profile-show-statistics-card" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-info) 100%); color: white; padding: var(--spacing-xl);">
-            <h2 style="color: white; margin-bottom: var(--spacing-xl);" data-testid="profile-show-statistics-title">Account Statistics</h2>
+        <div>
+          <div class="section-card" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-info) 100%); color: white; padding: var(--spacing-xl);">
+            <h2 style="color: white; margin-bottom: var(--spacing-xl);">Account Statistics</h2>
             
-            <div style="margin-bottom: var(--spacing-xl);" data-testid="profile-show-total-products-section">
+            <div style="margin-bottom: var(--spacing-xl);">
               <div style="font-size: 0.875rem; opacity: 0.9; margin-bottom: var(--spacing-sm);">Total Products</div>
-              <div style="font-size: 2.5rem; font-weight: 700;" data-testid="profile-show-total-products"><%= @user.products.count %></div>
+              <div style="font-size: 2.5rem; font-weight: 700;"><%= @user.products.count %></div>
               <div style="font-size: 0.75rem; opacity: 0.8; margin-top: var(--spacing-xs);">Products you've registered</div>
             </div>
 
-            <div style="padding-top: var(--spacing-xl); border-top: 1px solid rgba(255, 255, 255, 0.2);" data-testid="profile-show-account-type-section">
+            <div style="padding-top: var(--spacing-xl); border-top: 1px solid rgba(255, 255, 255, 0.2);">
               <div style="font-size: 0.875rem; opacity: 0.9; margin-bottom: var(--spacing-sm);">Account Type</div>
-              <div style="font-size: 1.25rem; font-weight: 600;" data-testid="profile-show-account-type">
+              <div style="font-size: 1.25rem; font-weight: 600;">
                 <%= @user.admin? ? 'Administrator' : 'Regular User' %>
               </div>
-              <div style="font-size: 0.75rem; opacity: 0.8; margin-top: var(--spacing-xs);" data-testid="profile-show-account-type-description">
+              <div style="font-size: 0.75rem; opacity: 0.8; margin-top: var(--spacing-xs);">
                 <%= @user.admin? ? 'Full system access' : 'Standard user privileges' %>
               </div>
             </div>
           </div>
 
           <% if @user.products.any? %>
-            <div class="section-card" data-testid="profile-show-quick-actions-card" style="margin-top: var(--spacing-lg);">
-              <h3 style="margin-bottom: var(--spacing-md);" data-testid="profile-show-quick-actions-title">Quick Actions</h3>
-              <%= link_to products_path, class: "card-link", id: "profile-show-view-products-link" do %>
+            <div class="section-card" style="margin-top: var(--spacing-lg);">
+              <h3 style="margin-bottom: var(--spacing-md);">Quick Actions</h3>
+              <%= link_to products_path, class: "card-link" do %>
                 View All Products →
               <% end %>
             </div>

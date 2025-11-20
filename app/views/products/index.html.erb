@@ -1,16 +1,16 @@
-<div class="home-container" data-testid="products-index-container">
-  <div class="home-content" data-testid="products-index-content">
-    <header class="home-header" data-testid="products-index-header">
+<div class="home-container" container">
+  <div class="home-content" content">
+    <header class="home-header" header">
       <div>
-        <h1 data-testid="products-index-title">ODT Auction Platform</h1>
-        <p class="subtitle" data-testid="products-index-subtitle">Browse all registered products</p>
+        <h1 title">ODT Auction Platform</h1>
+        <p class="subtitle" subtitle">Browse all registered products</p>
       </div>
     </header>
 
     <% if @products.any? %>
-      <div class="products-grid" data-testid="products-index-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--spacing-lg); margin-top: var(--spacing-xl);">
+      <div class="products-grid" grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--spacing-lg); margin-top: var(--spacing-xl);">
         <% @products.each do |product| %>
-          <div class="section-card" id="<%= dom_id(product, :card) %>" data-testid="user-product-card" data-product-id="<%= product.id %>" style="cursor: pointer;" onclick="window.location='<%= product_path(product) %>'">
+          <div class="section-card" id="<%= dom_id(product, :card) %>"  data-product-id="<%= product.id %>" style="cursor: pointer;" onclick="window.location='<%= product_path(product) %>'">
             <div class="card-icon">
               <svg width="48" height="48" fill="var(--color-primary)" viewBox="0 0 24 24">
                 <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>

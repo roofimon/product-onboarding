@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :require_login
-  before_action :set_user, only: [:show, :edit, :update, :reset_password, :update_password]
+  before_action :set_user, only: [:show, :edit, :update, :edit_password, :update_password]
 
   def show
   end
@@ -17,23 +17,22 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def reset_password
+  def edit_password
   end
 
   def update_password
-    current_password = params[:user][:current_password]
-    
-    if current_password.present? && @user.authenticate(current_password)
-      if @user.update(password_params)
-        redirect_to profile_path, notice: "Password updated successfully!"
-      else
-        flash.now[:alert] = "Please fix the errors below"
-        render :reset_password, status: :unprocessable_entity
-      end
-    else
+    unless valid_current_password?
       @user.errors.add(:current_password, "is incorrect")
       flash.now[:alert] = "Current password is incorrect"
-      render :reset_password, status: :unprocessable_entity
+      render :edit_password, status: :unprocessable_entity
+      return
+    end
+
+    if @user.update(password_params)
+      redirect_to profile_path, notice: "Password updated successfully!"
+    else
+      flash.now[:alert] = "Please fix the errors below"
+      render :edit_password, status: :unprocessable_entity
     end
   end
 
@@ -49,6 +48,11 @@ class ProfilesController < ApplicationController
 
   def password_params
     params.require(:user).permit(:password, :password_confirmation)
+  end
+
+  def valid_current_password?
+    current_password = params[:user][:current_password]
+    current_password.present? && @user.authenticate(current_password)
   end
 end
 
