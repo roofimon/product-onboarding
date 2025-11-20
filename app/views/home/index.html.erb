@@ -6,15 +6,6 @@
           <h1>Welcome to ODT Auction Platform</h1>
           <p class="subtitle">Hello, <%= @user.name %> <%= @user.surname %>! You're successfully logged in.</p>
         </div>
-        <div style="display: flex; align-items: center; gap: var(--spacing-md);">
-          <span style="color: var(--color-text-secondary); font-size: 0.875rem;"><%= @user.email %></span>
-          <%= link_to logout_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to logout?" }, class: "btn btn-secondary", style: "white-space: nowrap;" do %>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: var(--spacing-xs); vertical-align: middle;">
-              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Logout
-          <% end %>
-        </div>
       </div>
     </header>
 
