@@ -1,14 +1,14 @@
-<div class="admin-layout">
+<div class="admin-layout" id="admin-users-layout">
   <!-- Sidebar -->
-  <div class="admin-sidebar">
-    <div class="admin-logo">
-      <h2>Admin Panel</h2>
+  <div class="admin-sidebar" id="admin-sidebar">
+    <div class="admin-logo" id="admin-logo">
+      <h2 id="admin-logo-title">Admin Panel</h2>
     </div>
     
-    <nav class="admin-nav">
-      <ul>
-        <li class="nav-item">
-          <%= link_to admin_dashboard_path, class: "nav-link" do %>
+    <nav class="admin-nav" id="admin-nav">
+      <ul id="admin-nav-list">
+        <li class="nav-item" id="admin-nav-dashboard-item">
+          <%= link_to admin_dashboard_path, class: "nav-link", id: "admin-nav-dashboard-link" do %>
             <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
               <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
             </svg>
@@ -16,8 +16,8 @@
           <% end %>
         </li>
         <% if admin? %>
-          <li class="nav-item active">
-            <%= link_to admin_users_path, class: "nav-link" do %>
+          <li class="nav-item active" id="admin-nav-users-item">
+            <%= link_to admin_users_path, class: "nav-link", id: "admin-nav-users-link" do %>
               <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
               </svg>
@@ -25,16 +25,16 @@
             <% end %>
           </li>
         <% end %>
-        <li class="nav-item">
-          <a href="#" class="nav-link">
+        <li class="nav-item" id="admin-nav-analytics-item">
+          <a href="#" class="nav-link" id="admin-nav-analytics-link">
             <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
               <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
             </svg>
             Analytics
           </a>
         </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">
+        <li class="nav-item" id="admin-nav-settings-item">
+          <a href="#" class="nav-link" id="admin-nav-settings-link">
             <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
               <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/>
             </svg>
@@ -44,26 +44,26 @@
       </ul>
     </nav>
 
-    <div class="admin-user">
-      <div class="user-info">
-        <div class="user-avatar">
+    <div class="admin-user" id="admin-user">
+      <div class="user-info" id="admin-user-info">
+        <div class="user-avatar" id="admin-user-avatar">
           <%= current_user.name.first.upcase %>
         </div>
-        <div class="user-details">
-          <div class="user-name"><%= current_user.name %> <%= current_user.surname %></div>
-          <div class="user-role">Administrator</div>
+        <div class="user-details" id="admin-user-details">
+          <div class="user-name" id="admin-user-name"><%= current_user.name %> <%= current_user.surname %></div>
+          <div class="user-role" id="admin-user-role">Administrator</div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Main Content -->
-  <div class="admin-main">
-    <header class="admin-header">
-      <h1>Users</h1>
-      <div class="header-actions">
-        <span class="welcome-text">Manage all users</span>
-        <%= link_to logout_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to logout?" }, class: "btn btn-secondary", style: "margin-left: var(--spacing-md); white-space: nowrap;" do %>
+  <div class="admin-main" id="admin-main">
+    <header class="admin-header" id="admin-header">
+      <h1 id="admin-header-title">Users</h1>
+      <div class="header-actions" id="admin-header-actions">
+        <span class="welcome-text" id="admin-header-welcome">Manage all users</span>
+        <%= link_to logout_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to logout?" }, class: "btn btn-secondary", id: "admin-header-logout-button", style: "margin-left: var(--spacing-md); white-space: nowrap;" do %>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: var(--spacing-xs); vertical-align: middle;">
             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -72,67 +72,67 @@
       </div>
     </header>
 
-    <div class="admin-content">
+    <div class="admin-content" id="admin-content">
       <!-- Filters and Table Header -->
-      <div class="content-section">
-        <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg); padding-bottom: var(--spacing-md); border-bottom: 2px solid var(--color-border);">
-          <div>
-            <h2 style="margin-bottom: var(--spacing-xs);">User Management</h2>
-            <p style="color: var(--color-text-secondary); font-size: 0.875rem; margin: 0;">
+      <div class="content-section" id="admin-users-content-section">
+        <div class="section-header" id="admin-users-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg); padding-bottom: var(--spacing-md); border-bottom: 2px solid var(--color-border);">
+          <div id="admin-users-header-info">
+            <h2 style="margin-bottom: var(--spacing-xs);" id="admin-users-title">User Management</h2>
+            <p style="color: var(--color-text-secondary); font-size: 0.875rem; margin: 0;" id="admin-users-count">
               Showing <%= @users.count %> <%= params[:status].present? ? params[:status].humanize.downcase : 'total' %> user<%= @users.count != 1 ? 's' : '' %>
             </p>
           </div>
-          <div class="filters" style="display: flex; gap: var(--spacing-sm); flex-wrap: wrap;">
-            <%= link_to admin_users_path, class: "filter-link #{'active' if params[:status].blank?}" do %>
+          <div class="filters" id="admin-users-filters" style="display: flex; gap: var(--spacing-sm); flex-wrap: wrap;">
+            <%= link_to admin_users_path, class: "filter-link #{'active' if params[:status].blank?}", id: "admin-users-filter-all" do %>
               <span>All</span>
-              <span class="filter-count"><%= @total_count %></span>
+              <span class="filter-count" id="admin-users-filter-all-count"><%= @total_count %></span>
             <% end %>
-            <%= link_to admin_users_path(status: 'waiting_for_approve'), class: "filter-link #{'active' if params[:status] == 'waiting_for_approve'}" do %>
+            <%= link_to admin_users_path(status: 'waiting_for_approve'), class: "filter-link #{'active' if params[:status] == 'waiting_for_approve'}", id: "admin-users-filter-waiting" do %>
               <span>Waiting</span>
-              <span class="filter-count"><%= @waiting_count %></span>
+              <span class="filter-count" id="admin-users-filter-waiting-count"><%= @waiting_count %></span>
             <% end %>
-            <%= link_to admin_users_path(status: 'active'), class: "filter-link #{'active' if params[:status] == 'active'}" do %>
+            <%= link_to admin_users_path(status: 'active'), class: "filter-link #{'active' if params[:status] == 'active'}", id: "admin-users-filter-active" do %>
               <span>Active</span>
-              <span class="filter-count"><%= @active_count %></span>
+              <span class="filter-count" id="admin-users-filter-active-count"><%= @active_count %></span>
             <% end %>
-            <%= link_to admin_users_path(status: 'inactive'), class: "filter-link #{'active' if params[:status] == 'inactive'}" do %>
+            <%= link_to admin_users_path(status: 'inactive'), class: "filter-link #{'active' if params[:status] == 'inactive'}", id: "admin-users-filter-inactive" do %>
               <span>Inactive</span>
-              <span class="filter-count"><%= @inactive_count %></span>
+              <span class="filter-count" id="admin-users-filter-inactive-count"><%= @inactive_count %></span>
             <% end %>
           </div>
         </div>
         
-        <div class="data-table">
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Status</th>
-                <th>Joined</th>
-                <th>Actions</th>
+        <div class="data-table" id="admin-users-table">
+          <table id="admin-users-table-element">
+            <thead id="admin-users-table-head">
+              <tr id="admin-users-table-head-row">
+                <th id="admin-users-table-head-name">Name</th>
+                <th id="admin-users-table-head-email">Email</th>
+                <th id="admin-users-table-head-role">Role</th>
+                <th id="admin-users-table-head-status">Status</th>
+                <th id="admin-users-table-head-joined">Joined</th>
+                <th id="admin-users-table-head-actions">Actions</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="admin-users-table-body">
               <% if @users.any? %>
                 <% @users.each do |user| %>
-                  <tr>
-                    <td>
-                      <div class="user-cell">
-                        <div class="user-avatar small">
+                  <tr id="<%= dom_id(user, :row) %>">
+                    <td id="<%= dom_id(user, :name_cell) %>">
+                      <div class="user-cell" id="<%= dom_id(user, :name_cell_content) %>">
+                        <div class="user-avatar small" id="<%= dom_id(user, :avatar) %>">
                           <%= user.name.first.upcase %>
                         </div>
-                        <span><%= user.name %> <%= user.surname %></span>
+                        <span id="<%= dom_id(user, :name) %>"><%= user.name %> <%= user.surname %></span>
                       </div>
                     </td>
-                    <td><%= user.email %></td>
-                    <td>
-                      <span class="badge <%= user.admin? ? 'badge-primary' : 'badge-secondary' %>">
+                    <td id="<%= dom_id(user, :email_cell) %>"><%= user.email %></td>
+                    <td id="<%= dom_id(user, :role_cell) %>">
+                      <span class="badge <%= user.admin? ? 'badge-primary' : 'badge-secondary' %>" id="<%= dom_id(user, :role_badge) %>">
                         <%= user.admin? ? 'Admin' : 'User' %>
                       </span>
                     </td>
-                    <td>
+                    <td id="<%= dom_id(user, :status_cell) %>">
                       <span class="badge <%= case user.status.to_sym
                         when :waiting_for_approve
                           'badge-warning'
@@ -142,38 +142,38 @@
                           'badge-danger'
                         else
                           'badge-secondary'
-                        end %>">
+                        end %>" id="<%= dom_id(user, :status_badge) %>">
                         <%= user.status.humanize.titleize %>
                       </span>
                     </td>
-                    <td><%= user.created_at.strftime('%b %d, %Y') %></td>
-                    <td>
-                      <div class="action-buttons">
+                    <td id="<%= dom_id(user, :joined_cell) %>"><%= user.created_at.strftime('%b %d, %Y') %></td>
+                    <td id="<%= dom_id(user, :actions_cell) %>">
+                      <div class="action-buttons" id="<%= dom_id(user, :actions) %>">
                         <% if user.waiting_for_approve? %>
-                          <%= link_to approve_admin_user_path(user, status_filter: params[:status]), class: "btn-icon text-success", title: "Approve", data: { turbo_method: :patch, turbo_confirm: "Are you sure you want to approve #{user.name} #{user.surname}?" } do %>
+                          <%= link_to approve_admin_user_path(user, status_filter: params[:status]), class: "btn-icon text-success", id: dom_id(user, :approve_button), title: "Approve", data: { turbo_method: :patch, turbo_confirm: "Are you sure you want to approve #{user.name} #{user.surname}?" } do %>
                             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
                               <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                             </svg>
                           <% end %>
                         <% elsif user.active? %>
-                          <%= link_to deactivate_admin_user_path(user, status_filter: params[:status]), class: "btn-icon text-danger", title: "Deactivate", data: { turbo_method: :patch, turbo_confirm: "Are you sure you want to deactivate #{user.name} #{user.surname}?" } do %>
+                          <%= link_to deactivate_admin_user_path(user, status_filter: params[:status]), class: "btn-icon text-danger", id: dom_id(user, :deactivate_button), title: "Deactivate", data: { turbo_method: :patch, turbo_confirm: "Are you sure you want to deactivate #{user.name} #{user.surname}?" } do %>
                             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
                               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
                             </svg>
                           <% end %>
                         <% elsif user.inactive? %>
-                          <%= link_to activate_admin_user_path(user, status_filter: params[:status]), class: "btn-icon text-success", title: "Activate", data: { turbo_method: :patch, turbo_confirm: "Are you sure you want to activate #{user.name} #{user.surname}?" } do %>
+                          <%= link_to activate_admin_user_path(user, status_filter: params[:status]), class: "btn-icon text-success", id: dom_id(user, :activate_button), title: "Activate", data: { turbo_method: :patch, turbo_confirm: "Are you sure you want to activate #{user.name} #{user.surname}?" } do %>
                             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
                               <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                             </svg>
                           <% end %>
                         <% else %>
-                          <button class="btn-icon" title="Edit">
+                          <button class="btn-icon" id="<%= dom_id(user, :edit_button) %>" title="Edit">
                             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
                               <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
                             </svg>
                           </button>
-                          <button class="btn-icon text-danger" title="Delete">
+                          <button class="btn-icon text-danger" id="<%= dom_id(user, :delete_button) %>" title="Delete">
                             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
                               <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
                             </svg>
@@ -184,8 +184,8 @@
                   </tr>
                 <% end %>
               <% else %>
-                <tr>
-                  <td colspan="6" style="text-align: center; padding: var(--spacing-xl); color: var(--color-text-secondary);">
+                <tr id="admin-users-empty-row">
+                  <td colspan="6" id="admin-users-empty-message" style="text-align: center; padding: var(--spacing-xl); color: var(--color-text-secondary);">
                     No users found.
                   </td>
                 </tr>

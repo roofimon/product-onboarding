@@ -1,4 +1,4 @@
-<div class="shopping-container">
+<div class="shopping-container" id="shopping-container">
   <% image_urls = {
     "Vintage Watch Collection" => "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80",
     "Antique Furniture Set" => "https://images.unsplash.com/photo-1484101403633-562f891dc89a?auto=format&fit=crop&w=900&q=80",
@@ -10,20 +10,20 @@
   } %>
 
   <!-- Products Section -->
-  <div class="products-wrapper">
+  <div class="products-wrapper" id="products-wrapper">
     <% if @products.any? %>
-      <div class="products-header">
-        <h2 class="products-title">
+      <div class="products-header" id="products-header">
+        <h2 class="products-title" id="products-title">
           <% if params[:search].present? %>
             Search Results (<%= @pagy.count %>)
           <% else %>
             All Products (<%= @pagy.count %>)
           <% end %>
         </h2>
-        <div class="sort-controls">
-          <%= form_with url: root_path, method: :get, local: true, class: "sort-form" do |f| %>
+        <div class="sort-controls" id="sort-controls">
+          <%= form_with url: root_path, method: :get, local: true, class: "sort-form", id: "sort-form" do |f| %>
             <%= f.hidden_field :search, value: params[:search] if params[:search].present? %>
-            <%= f.label :sort, "Sort by:", class: "sort-label" %>
+            <%= f.label :sort, "Sort by:", class: "sort-label", id: "sort-label" %>
             <%= f.select :sort, 
                   options_for_select([
                     ['Newest First', ''],
@@ -33,13 +33,14 @@
                   {},
                   { 
                     class: "sort-select",
+                    id: "sort-select",
                     onchange: "this.form.submit();"
                   } %>
           <% end %>
         </div>
       </div>
 
-      <div class="products-grid">
+      <div class="products-grid" id="products-grid">
         <% @products.each do |product| %>
           <% cache product do %>
             <%= render partial: 'product_card', locals: { product: product, image_urls: image_urls } %>
@@ -48,13 +49,13 @@
       </div>
 
       <% if @pagy.pages > 1 %>
-        <div class="pagination-wrapper">
+        <div class="pagination-wrapper" id="pagination-wrapper">
           <%== pagy_nav(@pagy) %>
         </div>
       <% end %>
     <% else %>
-      <div class="empty-state">
-        <div class="empty-icon">
+      <div class="empty-state" id="empty-state">
+        <div class="empty-icon" id="empty-icon">
           <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
             <line x1="9" y1="3" x2="9" y2="21"></line>
@@ -62,14 +63,14 @@
           </svg>
         </div>
         <% if params[:search].present? %>
-          <h3 class="empty-title">No products found</h3>
-          <p class="empty-message">
+          <h3 class="empty-title" id="empty-title">No products found</h3>
+          <p class="empty-message" id="empty-message">
             No products match your search "<strong><%= params[:search] %></strong>"
           </p>
-          <%= link_to "Clear search", root_path, class: "btn btn-primary" %>
+          <%= link_to "Clear search", root_path, class: "btn btn-primary", id: "clear-search-button" %>
         <% else %>
-          <h3 class="empty-title">No products available</h3>
-          <p class="empty-message">Be the first to register a product!</p>
+          <h3 class="empty-title" id="empty-title">No products available</h3>
+          <p class="empty-message" id="empty-message">Be the first to register a product!</p>
         <% end %>
       </div>
     <% end %>

@@ -1,16 +1,16 @@
-<div class="home-container">
-  <div class="home-content">
-    <header class="home-header">
+<div class="home-container" id="products-index-container">
+  <div class="home-content" id="products-index-content">
+    <header class="home-header" id="products-index-header">
       <div>
-        <h1>ODT Auction Platform</h1>
-        <p class="subtitle">Browse all registered products</p>
+        <h1 id="products-index-title">ODT Auction Platform</h1>
+        <p class="subtitle" id="products-index-subtitle">Browse all registered products</p>
       </div>
     </header>
 
     <% if @products.any? %>
-      <div class="products-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--spacing-lg); margin-top: var(--spacing-xl);">
+      <div class="products-grid" id="products-index-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--spacing-lg); margin-top: var(--spacing-xl);">
         <% @products.each do |product| %>
-          <div class="section-card" style="cursor: pointer;" onclick="window.location='<%= product_path(product) %>'">
+          <div class="section-card" id="<%= dom_id(product, :card) %>" style="cursor: pointer;" onclick="window.location='<%= product_path(product) %>'">
             <div class="card-icon">
               <svg width="48" height="48" fill="var(--color-primary)" viewBox="0 0 24 24">
                 <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
@@ -37,14 +37,14 @@
         <% end %>
       </div>
     <% else %>
-      <div class="content-section" style="text-align: center; padding: var(--spacing-2xl); margin-top: var(--spacing-xl);">
-        <div class="card-icon" style="margin: 0 auto var(--spacing-lg);">
+      <div class="content-section" id="products-index-empty-state" style="text-align: center; padding: var(--spacing-2xl); margin-top: var(--spacing-xl);">
+        <div class="card-icon" id="products-index-empty-icon" style="margin: 0 auto var(--spacing-lg);">
           <svg width="64" height="64" fill="var(--color-text-secondary)" viewBox="0 0 24 24">
             <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
           </svg>
         </div>
-        <h3 style="margin-bottom: var(--spacing-md);">No products yet</h3>
-        <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-xl);">
+        <h3 style="margin-bottom: var(--spacing-md);" id="products-index-empty-title">No products yet</h3>
+        <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-xl);" id="products-index-empty-message">
           Be the first to register a product!
         </p>
       </div>

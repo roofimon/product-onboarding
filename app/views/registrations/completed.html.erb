@@ -1,36 +1,36 @@
-<div class="auth-container">
-  <div class="auth-card" style="text-align: center; max-width: 500px;">
-    <div style="margin-bottom: var(--spacing-xl);">
-      <div style="width: 80px; height: 80px; margin: 0 auto var(--spacing-lg); background-color: var(--color-success); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+<div class="auth-container" id="registration-completed-container">
+  <div class="auth-card" id="registration-completed-card" style="text-align: center; max-width: 500px;">
+    <div style="margin-bottom: var(--spacing-xl);" id="registration-completed-header">
+      <div style="width: 80px; height: 80px; margin: 0 auto var(--spacing-lg); background-color: var(--color-success); border-radius: 50%; display: flex; align-items: center; justify-content: center;" id="registration-completed-icon">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M20 6L9 17L4 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
-      <h1 class="auth-title" style="color: var(--color-success);">Registration Successful!</h1>
+      <h1 class="auth-title" id="registration-completed-title" style="color: var(--color-success);">Registration Successful!</h1>
     </div>
 
     <% if flash[:notice] %>
-      <div class="alert alert-notice" style="margin-bottom: var(--spacing-lg);">
+      <div class="alert alert-notice" id="registration-completed-notice" style="margin-bottom: var(--spacing-lg);">
         <%= flash[:notice] %>
       </div>
     <% end %>
 
-    <div style="margin-bottom: var(--spacing-xl);">
-      <p style="font-size: 1.125rem; color: var(--color-text); margin-bottom: var(--spacing-md);">
+    <div style="margin-bottom: var(--spacing-xl);" id="registration-completed-message">
+      <p style="font-size: 1.125rem; color: var(--color-text); margin-bottom: var(--spacing-md);" id="registration-completed-welcome">
         Welcome, <strong><%= @user.name %> <%= @user.surname %></strong>!
       </p>
-      <p style="color: var(--color-text-secondary); line-height: 1.8;">
+      <p style="color: var(--color-text-secondary); line-height: 1.8;" id="registration-completed-description">
         Your account has been successfully created. You're now logged in and ready to get started.
       </p>
     </div>
 
-    <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
-      <%= link_to "Get Started", root_path, class: "btn btn-primary btn-block", style: "font-size: 1rem; padding: var(--spacing-md) var(--spacing-lg);" %>
-      <%= link_to "Go to Dashboard", root_path, class: "btn btn-secondary btn-block" %>
+    <div style="display: flex; flex-direction: column; gap: var(--spacing-md);" id="registration-completed-actions">
+      <%= link_to "Get Started", root_path, class: "btn btn-primary btn-block", id: "registration-completed-get-started", style: "font-size: 1rem; padding: var(--spacing-md) var(--spacing-lg);" %>
+      <%= link_to "Go to Dashboard", root_path, class: "btn btn-secondary btn-block", id: "registration-completed-dashboard" %>
     </div>
 
-    <div class="auth-links" style="margin-top: var(--spacing-xl);">
-      Need help? <a href="#" style="color: var(--color-primary);">Contact Support</a>
+    <div class="auth-links" id="registration-completed-links" style="margin-top: var(--spacing-xl);">
+      Need help? <a href="#" id="registration-completed-support-link" style="color: var(--color-primary);">Contact Support</a>
     </div>
   </div>
 </div>

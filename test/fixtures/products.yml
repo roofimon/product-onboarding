@@ -1,15 +1,99 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  description: MyText
-  open_price: 9.99
-  price_per_bid: 9.99
-  user: one
+# Products for testing search functionality
+vintage_watch:
+  name: Vintage Watch Collection
+  description: A beautiful collection of vintage watches from the 1950s. Includes rare timepieces in excellent condition.
+  open_price: 1500.00
+  price_per_bid: 50.00
+  user: seller_one
+  created_at: <%= 10.days.ago %>
 
-two:
-  name: MyString
-  description: MyText
-  open_price: 9.99
-  price_per_bid: 9.99
-  user: two
+antique_furniture:
+  name: Antique Furniture Set
+  description: Elegant antique furniture set including dining table and chairs. Perfect for collectors.
+  open_price: 2500.00
+  price_per_bid: 100.00
+  user: seller_two
+  created_at: <%= 9.days.ago %>
+
+rare_coins:
+  name: Rare Coin Collection
+  description: Collection of rare coins from various countries. Some coins date back to the 1800s.
+  open_price: 500.00
+  price_per_bid: 25.00
+  user: seller_one
+  created_at: <%= 8.days.ago %>
+
+designer_handbag:
+  name: Designer Handbag
+  description: Luxury designer handbag in pristine condition. Authentic and rare find.
+  open_price: 800.00
+  price_per_bid: 40.00
+  user: seller_three
+  created_at: <%= 7.days.ago %>
+
+vinyl_records:
+  name: Vintage Vinyl Records
+  description: Collection of vintage vinyl records from classic artists. All records are in excellent condition.
+  open_price: 300.00
+  price_per_bid: 15.00
+  user: seller_two
+  created_at: <%= 6.days.ago %>
+
+art_painting:
+  name: Art Painting
+  description: Original art painting by renowned artist. Signed and authenticated.
+  open_price: 5000.00
+  price_per_bid: 200.00
+  user: seller_four
+  created_at: <%= 5.days.ago %>
+
+comic_books:
+  name: Collectible Comic Books
+  description: Rare collectible comic books from the golden age. First editions included.
+  open_price: 1200.00
+  price_per_bid: 60.00
+  user: seller_three
+  created_at: <%= 4.days.ago %>
+
+# Additional products for pagination testing (need at least 10 total)
+product_8:
+  name: Product Eight
+  description: This is product number eight for testing pagination functionality.
+  open_price: 400.00
+  price_per_bid: 20.00
+  user: seller_four
+  created_at: <%= 3.days.ago %>
+
+product_9:
+  name: Product Nine
+  description: This is product number nine for testing pagination functionality.
+  open_price: 600.00
+  price_per_bid: 30.00
+  user: seller_five
+  created_at: <%= 2.days.ago %>
+
+product_10:
+  name: Product Ten
+  description: This is product number ten for testing pagination functionality.
+  open_price: 350.00
+  price_per_bid: 18.00
+  user: seller_one
+  created_at: <%= 1.day.ago %>
+
+product_11:
+  name: Product Eleven
+  description: This is product number eleven for testing pagination functionality.
+  open_price: 450.00
+  price_per_bid: 22.00
+  user: seller_two
+  created_at: <%= 12.hours.ago %>
+
+product_12:
+  name: Product Twelve
+  description: This is product number twelve for testing pagination functionality.
+  open_price: 550.00
+  price_per_bid: 28.00
+  user: seller_three
+  created_at: <%= 6.hours.ago %>

@@ -1,33 +1,33 @@
-<%= form_with model: @product, local: true, class: "auth-form" do |f| %>
-  <div class="form-group">
-    <%= f.label :name, "Product Name", class: "form-label" %>
-    <%= f.text_field :name, class: "form-input", placeholder: "Enter product name", required: true, autofocus: true %>
+<%= form_with model: @product, local: true, class: "auth-form", id: "product-form" do |f| %>
+  <div class="form-group" id="product-form-name-group">
+    <%= f.label :name, "Product Name", class: "form-label", id: "product-form-name-label" %>
+    <%= f.text_field :name, class: "form-input", id: "product-form-name", placeholder: "Enter product name", required: true, autofocus: true %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :description, "Description", class: "form-label" %>
-    <%= f.text_area :description, class: "form-input form-textarea", placeholder: "Enter product description (minimum 10 characters)", required: true, rows: 5 %>
+  <div class="form-group" id="product-form-description-group">
+    <%= f.label :description, "Description", class: "form-label", id: "product-form-description-label" %>
+    <%= f.text_area :description, class: "form-input form-textarea", id: "product-form-description", placeholder: "Enter product description (minimum 10 characters)", required: true, rows: 5 %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :open_price, "Open Price", class: "form-label" %>
-    <%= f.number_field :open_price, class: "form-input", placeholder: "0.00", step: 0.01, min: 0.01, required: true %>
-    <small style="color: var(--color-text-secondary); font-size: 0.75rem; margin-top: var(--spacing-xs); display: block;">
+  <div class="form-group" id="product-form-open-price-group">
+    <%= f.label :open_price, "Open Price", class: "form-label", id: "product-form-open-price-label" %>
+    <%= f.number_field :open_price, class: "form-input", id: "product-form-open-price", placeholder: "0.00", step: 0.01, min: 0.01, required: true %>
+    <small style="color: var(--color-text-secondary); font-size: 0.75rem; margin-top: var(--spacing-xs); display: block;" id="product-form-open-price-help">
       The starting price for this product
     </small>
   </div>
 
-  <div class="form-group">
-    <%= f.label :price_per_bid, "Price Per Bid", class: "form-label" %>
-    <%= f.number_field :price_per_bid, class: "form-input", placeholder: "0.00", step: 0.01, min: 0.01, required: true %>
-    <small style="color: var(--color-text-secondary); font-size: 0.75rem; margin-top: var(--spacing-xs); display: block;">
+  <div class="form-group" id="product-form-price-per-bid-group">
+    <%= f.label :price_per_bid, "Price Per Bid", class: "form-label", id: "product-form-price-per-bid-label" %>
+    <%= f.number_field :price_per_bid, class: "form-input", id: "product-form-price-per-bid", placeholder: "0.00", step: 0.01, min: 0.01, required: true %>
+    <small style="color: var(--color-text-secondary); font-size: 0.75rem; margin-top: var(--spacing-xs); display: block;" id="product-form-price-per-bid-help">
       The minimum increment amount for each bid
     </small>
   </div>
 
-  <div class="form-actions">
-    <%= f.submit "Create Product", class: "btn btn-primary btn-block" %>
-    <%= link_to "Cancel", products_path, class: "btn btn-secondary btn-block" %>
+  <div class="form-actions" id="product-form-actions">
+    <%= f.submit "Create Product", class: "btn btn-primary btn-block", id: "product-form-submit" %>
+    <%= link_to "Cancel", products_path, class: "btn btn-secondary btn-block", id: "product-form-cancel" %>
   </div>
 <% end %>
 

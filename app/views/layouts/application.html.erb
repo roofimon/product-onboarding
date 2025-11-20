@@ -28,24 +28,24 @@
     <%# Check if we're in PublicController or on root path (pagination URLs like /?page=2 still have path='/') %>
     <% public_area = controller.controller_name == 'public' || request.path == root_path || request.path == '/' || request.path.start_with?('/public/products/') %>
     <% if public_area || (logged_in? && !request.path.start_with?('/admin')) %>
-      <nav class="main-nav">
-        <div class="nav-content">
+      <nav class="main-nav" id="main-nav">
+        <div class="nav-content" id="nav-content">
           <% if public_area && !logged_in? %>
             <%# Public area navigation with logo, search, and login %>
-            <div class="nav-brand">
-              <%= link_to root_path, class: "logo-link" do %>
-                <div class="logo-mark">
+            <div class="nav-brand" id="nav-brand">
+              <%= link_to root_path, class: "logo-link", id: "logo-link" do %>
+                <div class="logo-mark" id="logo-mark">
                   <span>ODT</span>
                 </div>
-                <div class="logo-text">
-                  <div class="logo-primary">Auction</div>
-                  <div class="logo-secondary">Marketplace</div>
+                <div class="logo-text" id="logo-text">
+                  <div class="logo-primary" id="logo-primary">Auction</div>
+                  <div class="logo-secondary" id="logo-secondary">Marketplace</div>
                 </div>
               <% end %>
             </div>
-            <div class="nav-search">
-              <%= form_with url: root_path, method: :get, local: true, class: "nav-search-form" do |f| %>
-                <div class="nav-search-input">
+            <div class="nav-search" id="nav-search">
+              <%= form_with url: root_path, method: :get, local: true, class: "nav-search-form", id: "nav-search-form" do |f| %>
+                <div class="nav-search-input" id="nav-search-input">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="11" cy="11" r="8"></circle>
                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -53,63 +53,64 @@
                   <%= f.text_field :search,
                         value: params[:search],
                         placeholder: "Search products...",
-                        class: "nav-search-field" %>
+                        class: "nav-search-field",
+                        id: "nav-search-field" %>
                   <% if params[:sort].present? %>
                     <%= f.hidden_field :sort, value: params[:sort] %>
                   <% end %>
-                  <%= f.submit "Search", class: "nav-search-button" %>
+                  <%= f.submit "Search", class: "nav-search-button", id: "nav-search-button" %>
                 </div>
               <% end %>
             </div>
-            <div class="nav-actions">
-              <%= link_to "Login", login_path, class: "btn btn-primary" %>
+            <div class="nav-actions" id="nav-actions">
+              <%= link_to "Login", login_path, class: "btn btn-primary", id: "nav-login-button" %>
             </div>
           <% elsif logged_in? && !request.path.start_with?('/admin') %>
             <%# Logged in navigation %>
-            <div class="nav-brand">
-              <%= link_to "ODT Auction Platform", root_path %>
+            <div class="nav-brand" id="nav-brand">
+              <%= link_to "ODT Auction Platform", root_path, id: "nav-brand-link" %>
             </div>
-            <div class="nav-links" style="display: flex; align-items: center; gap: var(--spacing-md); flex: 1; justify-content: center;">
-              <%= link_to "Home", home_index_path, class: "nav-link" %>
+            <div class="nav-links" id="nav-links">
+              <%= link_to "Home", home_index_path, class: "nav-link", id: "nav-link-home" %>
             </div>
-            <div class="nav-user">
-              <%= link_to home_index_path, class: "user-greeting", style: "text-decoration: none; cursor: pointer;" do %>
+            <div class="nav-user" id="nav-user">
+              <%= link_to home_index_path, class: "user-greeting", id: "user-greeting" do %>
                 Hello, <%= current_user.name %>!
               <% end %>
               <% if admin? %>
-                <%= link_to "Admin Panel", admin_dashboard_path, class: "nav-link" %>
+                <%= link_to "Admin Panel", admin_dashboard_path, class: "nav-link", id: "nav-link-admin" %>
               <% end %>
 
-          <%= link_to home_index_path, class: "btn btn-secondary", style: "white-space: nowrap;" do %>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: var(--spacing-xs); vertical-align: middle;">
-              <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Back to Dashboard
-          <% end %>
+              <%= link_to home_index_path, class: "btn btn-secondary", id: "nav-back-dashboard-button" do %>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Back to Dashboard
+              <% end %>
 
-<a data-turbo-method="delete" data-turbo-confirm="Are you sure you want to logout?" class="btn btn-danger" style="white-space: nowrap;" href="/logout">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: var(--spacing-xs); vertical-align: middle;">
-              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg>
-            Logout
-</a>
-              </div>
+              <%= link_to logout_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to logout?" }, class: "btn btn-danger", id: "nav-logout-button" do %>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                Logout
+              <% end %>
+            </div>
           <% elsif public_area && logged_in? %>
             <%# Logged in user viewing public area %>
-            <div class="nav-brand">
-              <%= link_to root_path, class: "logo-link" do %>
-                <div class="logo-mark">
+            <div class="nav-brand" id="nav-brand">
+              <%= link_to root_path, class: "logo-link", id: "logo-link" do %>
+                <div class="logo-mark" id="logo-mark">
                   <span>ODT</span>
                 </div>
-                <div class="logo-text">
-                  <div class="logo-primary">Auction</div>
-                  <div class="logo-secondary">Marketplace</div>
+                <div class="logo-text" id="logo-text">
+                  <div class="logo-primary" id="logo-primary">Auction</div>
+                  <div class="logo-secondary" id="logo-secondary">Marketplace</div>
                 </div>
               <% end %>
             </div>
-            <div class="nav-search">
-              <%= form_with url: root_path, method: :get, local: true, class: "nav-search-form" do |f| %>
-                <div class="nav-search-input">
+            <div class="nav-search" id="nav-search">
+              <%= form_with url: root_path, method: :get, local: true, class: "nav-search-form", id: "nav-search-form" do |f| %>
+                <div class="nav-search-input" id="nav-search-input">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="11" cy="11" r="8"></circle>
                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -117,29 +118,30 @@
                   <%= f.text_field :search,
                         value: params[:search],
                         placeholder: "Search products...",
-                        class: "nav-search-field" %>
+                        class: "nav-search-field",
+                        id: "nav-search-field" %>
                   <% if params[:sort].present? %>
                     <%= f.hidden_field :sort, value: params[:sort] %>
                   <% end %>
-                  <%= f.submit "Search", class: "nav-search-button" %>
+                  <%= f.submit "Search", class: "nav-search-button", id: "nav-search-button" %>
                 </div>
               <% end %>
             </div>
-            <div class="nav-user">
-              <%= link_to home_index_path, class: "user-greeting", style: "text-decoration: none; cursor: pointer;" do %>
+            <div class="nav-user" id="nav-user">
+              <%= link_to home_index_path, class: "user-greeting", id: "user-greeting" do %>
                 Hello, <%= current_user.name %>!
               <% end %>
               <% if admin? %>
-                <%= link_to "Admin Panel", admin_dashboard_path, class: "nav-link" %>
+                <%= link_to "Admin Panel", admin_dashboard_path, class: "nav-link", id: "nav-link-admin" %>
               <% end %>
-              <%= link_to "Logout", logout_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to logout?" }, class: "nav-link logout-link" %>
+              <%= link_to "Logout", logout_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to logout?" }, class: "nav-link logout-link", id: "nav-logout-link" %>
             </div>
           <% end %>
         </div>
       </nav>
     <% end %>
     
-    <main class="<%= (public_area || (logged_in? && !request.path.start_with?('/admin'))) ? 'with-nav' : '' %>">
+    <main class="<%= (public_area || (logged_in? && !request.path.start_with?('/admin'))) ? 'with-nav' : '' %>" id="main-content">
       <%= yield %>
     </main>
   </body>

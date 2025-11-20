@@ -1,15 +1,15 @@
-<div class="auth-container">
-  <div class="auth-card">
-    <h1 class="auth-title">Register New Product</h1>
+<div class="auth-container" id="product-new-container">
+  <div class="auth-card" id="product-new-card">
+    <h1 class="auth-title" id="product-new-title">Register New Product</h1>
 
     <% if flash[:alert] %>
-      <div class="alert alert-error">
+      <div class="alert alert-error" id="product-new-alert">
         <%= flash[:alert] %>
       </div>
     <% end %>
 
     <% if @product.errors.any? %>
-      <div class="alert alert-error">
+      <div class="alert alert-error" id="product-new-errors">
         <h4><%= pluralize(@product.errors.count, "error") %> prohibited this product from being created:</h4>
         <ul style="margin-top: var(--spacing-sm); padding-left: var(--spacing-lg);">
           <% @product.errors.full_messages.each do |message| %>
