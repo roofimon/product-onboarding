@@ -1,15 +1,15 @@
-<div class="auth-container" id="registration-container">
-  <div class="auth-card" id="registration-card">
-    <h1 class="auth-title" id="registration-title">Create Account</h1>
+<div class="auth-container" data-testid="registration-container">
+  <div class="auth-card" data-testid="registration-card">
+    <h1 class="auth-title" data-testid="registration-title">Create Account</h1>
     
     <% if flash[:alert] %>
-      <div class="alert alert-error" id="registration-alert">
+      <div class="alert alert-error" data-testid="registration-alert">
         <%= flash[:alert] %>
       </div>
     <% end %>
     
     <% if @user.errors.any? %>
-      <div class="alert alert-error" id="registration-errors">
+      <div class="alert alert-error" data-testid="registration-errors">
         <h4><%= pluralize(@user.errors.count, "error") %> prohibited this account from being created:</h4>
         <ul style="margin-top: var(--spacing-sm); padding-left: var(--spacing-lg);">
           <% @user.errors.full_messages.each do |message| %>
@@ -19,39 +19,39 @@
       </div>
     <% end %>
 
-    <%= form_with model: @user, url: signup_path, method: :post, local: true, class: "auth-form", id: "registration-form" do |f| %>
-      <div class="form-group" id="registration-name-group">
-        <%= f.label :name, "First Name", class: "form-label", id: "registration-name-label" %>
-        <%= f.text_field :name, class: "form-input", id: "registration-name", placeholder: "Enter your first name", required: true, autofocus: true %>
+    <%= form_with model: @user, url: signup_path, method: :post, local: true, class: "auth-form", data: { testid: "registration-form" } do |f| %>
+      <div class="form-group" data-testid="registration-name-group">
+        <%= f.label :name, "First Name", class: "form-label", data: { testid: "registration-name-label" } %>
+        <%= f.text_field :name, class: "form-input", data: { testid: "registration-name" }, placeholder: "Enter your first name", required: true, autofocus: true %>
       </div>
 
-      <div class="form-group" id="registration-surname-group">
-        <%= f.label :surname, "Last Name", class: "form-label", id: "registration-surname-label" %>
-        <%= f.text_field :surname, class: "form-input", id: "registration-surname", placeholder: "Enter your last name", required: true %>
+      <div class="form-group" data-testid="registration-surname-group">
+        <%= f.label :surname, "Last Name", class: "form-label", data: { testid: "registration-surname-label" } %>
+        <%= f.text_field :surname, class: "form-input", data: { testid: "registration-surname" }, placeholder: "Enter your last name", required: true %>
       </div>
 
-      <div class="form-group" id="registration-email-group">
-        <%= f.label :email, "Email", class: "form-label", id: "registration-email-label" %>
-        <%= f.email_field :email, class: "form-input", id: "registration-email", placeholder: "Enter your email", required: true %>
+      <div class="form-group" data-testid="registration-email-group">
+        <%= f.label :email, "Email", class: "form-label", data: { testid: "registration-email-label" } %>
+        <%= f.email_field :email, class: "form-input", data: { testid: "registration-email" }, placeholder: "Enter your email", required: true %>
       </div>
 
-      <div class="form-group" id="registration-password-group">
-        <%= f.label :password, "Password", class: "form-label", id: "registration-password-label" %>
-        <%= f.password_field :password, class: "form-input", id: "registration-password", placeholder: "Enter your password (min. 6 characters)", required: true %>
+      <div class="form-group" data-testid="registration-password-group">
+        <%= f.label :password, "Password", class: "form-label", data: { testid: "registration-password-label" } %>
+        <%= f.password_field :password, class: "form-input", data: { testid: "registration-password" }, placeholder: "Enter your password (min. 6 characters)", required: true %>
       </div>
 
-      <div class="form-group" id="registration-password-confirmation-group">
-        <%= f.label :password_confirmation, "Confirm Password", class: "form-label", id: "registration-password-confirmation-label" %>
-        <%= f.password_field :password_confirmation, class: "form-input", id: "registration-password-confirmation", placeholder: "Confirm your password", required: true %>
+      <div class="form-group" data-testid="registration-password-confirmation-group">
+        <%= f.label :password_confirmation, "Confirm Password", class: "form-label", data: { testid: "registration-password-confirmation-label" } %>
+        <%= f.password_field :password_confirmation, class: "form-input", data: { testid: "registration-password-confirmation" }, placeholder: "Confirm your password", required: true %>
       </div>
 
-      <div class="form-actions" id="registration-form-actions">
-        <%= f.submit "Create Account", class: "btn btn-primary btn-block", id: "registration-submit" %>
+      <div class="form-actions" data-testid="registration-form-actions">
+        <%= f.submit "Create Account", class: "btn btn-primary btn-block", data: { testid: "registration-submit" } %>
       </div>
     <% end %>
 
-    <div class="auth-links" id="registration-links">
-      Already have an account? <%= link_to "Sign in", login_path, id: "registration-login-link" %>
+    <div class="auth-links" data-testid="registration-links">
+      Already have an account? <%= link_to "Sign in", login_path, data: { testid: "registration-login-link" } %>
     </div>
   </div>
 </div>

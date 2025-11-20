@@ -42,7 +42,7 @@ if sample_user.nil?
   end
 end
 
-# Create 7 sample products
+# Create 11 sample products
 sample_products = [
   {
     name: "Vintage Watch Collection",
@@ -85,6 +85,30 @@ sample_products = [
     description: "Rare collection of vintage comic books from the Golden and Silver Age of comics. Includes first appearances of iconic characters, key storylines, and limited edition issues. All comics are professionally graded and stored in protective cases. A must-have for serious comic book collectors.",
     open_price: 6000.00,
     price_per_bid: 300.00
+  },
+  {
+    name: "Vintage Camera Collection",
+    description: "Exquisite collection of vintage film cameras from renowned manufacturers. Includes Leica, Nikon, and Canon models from the 1950s-1970s. All cameras are in working condition with original lenses and accessories. Perfect for photography enthusiasts and collectors of classic camera equipment.",
+    open_price: 3200.00,
+    price_per_bid: 150.00
+  },
+  {
+    name: "Antique Jewelry Set",
+    description: "Stunning antique jewelry collection featuring Art Deco and Victorian-era pieces. Includes necklaces, bracelets, earrings, and rings crafted from precious metals and gemstones. Each piece has been authenticated and appraised. A beautiful investment for jewelry collectors and fashion connoisseurs.",
+    open_price: 5500.00,
+    price_per_bid: 275.00
+  },
+  {
+    name: "Rare Book Collection",
+    description: "Valuable collection of rare first edition books from classic literature. Includes signed copies, limited editions, and books with historical significance. All volumes are in excellent condition with original bindings and dust jackets. A treasure for bibliophiles and collectors of literary works.",
+    open_price: 4200.00,
+    price_per_bid: 200.00
+  },
+  {
+    name: "Vintage Sports Memorabilia",
+    description: "Authentic collection of vintage sports memorabilia including signed jerseys, baseball cards, trading cards, and game-worn equipment. Features items from legendary athletes and historic moments in sports history. All items come with certificates of authenticity. Perfect for sports memorabilia collectors.",
+    open_price: 2800.00,
+    price_per_bid: 125.00
   }
 ]
 

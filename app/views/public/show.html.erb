@@ -1,10 +1,10 @@
-<div class="home-container" id="public-product-show-container">
-  <div class="home-content" id="public-product-show-content">
-    <header class="home-header" id="public-product-show-header">
+<div class="home-container" data-testid="public-product-show-container">
+  <div class="home-content" data-testid="public-product-show-content">
+    <header class="home-header" data-testid="public-product-show-header">
       <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
         <div>
-          <h1 id="public-product-show-title">ODT Auction Platform</h1>
-          <p class="subtitle" id="public-product-show-subtitle">Browse all registered products</p>
+          <h1 data-testid="public-product-show-title">ODT Auction Platform</h1>
+          <p class="subtitle" data-testid="public-product-show-subtitle">Browse all registered products</p>
         </div>
       </div>
     </header>
@@ -21,13 +21,13 @@
     <% fallback_image = "https://picsum.photos/seed/#{@product.id}-#{@product.name.parameterize}/900/600" %>
     <% product_image = image_urls[@product.name] || fallback_image %>
 
-    <div class="content-section" id="public-product-show-content-section" style="margin-top: var(--spacing-xl);">
+    <div class="content-section" data-testid="public-product-show-content-section" style="margin-top: var(--spacing-xl);">
       <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--spacing-xl); align-items: start;">
-        <div id="public-product-show-image-container" style="border-radius: var(--radius-lg); overflow: hidden; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); min-height: 360px; display: flex; align-items: center; justify-content: center;">
+        <div data-testid="public-product-show-image-container" style="border-radius: var(--radius-lg); overflow: hidden; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); min-height: 360px; display: flex; align-items: center; justify-content: center;">
           <% if product_image.present? %>
-            <img src="<%= product_image %>" alt="<%= @product.name %> image" id="public-product-show-image" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="<%= product_image %>" alt="<%= @product.name %> image" data-testid="public-product-show-image" style="width: 100%; height: 100%; object-fit: cover;">
           <% else %>
-            <div id="public-product-show-image-placeholder" style="color: var(--color-text-secondary); opacity: 0.5;">
+            <div data-testid="public-product-show-image-placeholder" style="color: var(--color-text-secondary); opacity: 0.5;">
               <svg width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                 <line x1="9" y1="3" x2="9" y2="21"></line>
@@ -36,44 +36,44 @@
             </div>
           <% end %>
         </div>
-        <div id="public-product-show-info">
-          <h2 style="margin-bottom: var(--spacing-lg);" id="public-product-show-info-title">Product Information</h2>
+        <div data-testid="public-product-show-info">
+          <h2 style="margin-bottom: var(--spacing-lg);" data-testid="public-product-show-info-title">Product Information</h2>
           
-          <div style="margin-bottom: var(--spacing-lg);" id="public-product-show-name-section">
+          <div style="margin-bottom: var(--spacing-lg);" data-testid="public-product-show-name-section">
             <div style="font-size: 0.875rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-xs);">Name</div>
-            <div style="font-size: 1.125rem; font-weight: 600;" id="public-product-show-name"><%= @product.name %></div>
+            <div style="font-size: 1.125rem; font-weight: 600;" data-testid="public-product-show-name"><%= @product.name %></div>
           </div>
 
-          <div style="margin-bottom: var(--spacing-lg);" id="public-product-show-description-section">
+          <div style="margin-bottom: var(--spacing-lg);" data-testid="public-product-show-description-section">
             <div style="font-size: 0.875rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-xs);">Description</div>
-            <div style="line-height: 1.8; white-space: pre-wrap;" id="public-product-show-description"><%= @product.description %></div>
+            <div style="line-height: 1.8; white-space: pre-wrap;" data-testid="public-product-show-description"><%= @product.description %></div>
           </div>
 
-          <div style="margin-bottom: var(--spacing-lg);" id="public-product-show-seller-section">
+          <div style="margin-bottom: var(--spacing-lg);" data-testid="public-product-show-seller-section">
             <div style="font-size: 0.875rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-xs);">Registered By</div>
-            <div style="font-weight: 500;" id="public-product-show-seller-name"><%= @product.user.name %> <%= @product.user.surname %></div>
-            <div style="font-size: 0.875rem; color: var(--color-text-secondary);" id="public-product-show-seller-email"><%= @product.user.email %></div>
+            <div style="font-weight: 500;" data-testid="public-product-show-seller-name"><%= @product.user.name %> <%= @product.user.surname %></div>
+            <div style="font-size: 0.875rem; color: var(--color-text-secondary);" data-testid="public-product-show-seller-email"><%= @product.user.email %></div>
           </div>
 
-          <div style="margin-bottom: var(--spacing-lg);" id="public-product-show-registered-section">
+          <div style="margin-bottom: var(--spacing-lg);" data-testid="public-product-show-registered-section">
             <div style="font-size: 0.875rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-xs);">Registered On</div>
-            <div id="public-product-show-registered-date"><%= @product.created_at.strftime('%B %d, %Y at %I:%M %p') %></div>
+            <div data-testid="public-product-show-registered-date"><%= @product.created_at.strftime('%B %d, %Y at %I:%M %p') %></div>
           </div>
         </div>
 
-        <div id="public-product-show-pricing">
-          <div class="section-card" id="public-product-show-pricing-card" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-info) 100%); color: white; padding: var(--spacing-xl);">
-            <h2 style="color: white; margin-bottom: var(--spacing-xl);" id="public-product-show-pricing-title">Pricing Information</h2>
+        <div data-testid="public-product-show-pricing">
+          <div class="section-card" data-testid="public-product-show-pricing-card" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-info) 100%); color: white; padding: var(--spacing-xl);">
+            <h2 style="color: white; margin-bottom: var(--spacing-xl);" data-testid="public-product-show-pricing-title">Pricing Information</h2>
             
-            <div style="margin-bottom: var(--spacing-xl);" id="public-product-show-open-price-section">
+            <div style="margin-bottom: var(--spacing-xl);" data-testid="public-product-show-open-price-section">
               <div style="font-size: 0.875rem; opacity: 0.9; margin-bottom: var(--spacing-sm);">Open Price</div>
-              <div style="font-size: 2rem; font-weight: 700;" id="public-product-show-open-price">$<%= number_with_precision(@product.open_price, precision: 2) %></div>
+              <div style="font-size: 2rem; font-weight: 700;" data-testid="public-product-show-open-price">$<%= number_with_precision(@product.open_price, precision: 2) %></div>
               <div style="font-size: 0.75rem; opacity: 0.8; margin-top: var(--spacing-xs);">Starting bid amount</div>
             </div>
 
-            <div style="padding-top: var(--spacing-xl); border-top: 1px solid rgba(255, 255, 255, 0.2);" id="public-product-show-price-per-bid-section">
+            <div style="padding-top: var(--spacing-xl); border-top: 1px solid rgba(255, 255, 255, 0.2);" data-testid="public-product-show-price-per-bid-section">
               <div style="font-size: 0.875rem; opacity: 0.9; margin-bottom: var(--spacing-sm);">Price Per Bid</div>
-              <div style="font-size: 1.5rem; font-weight: 600;" id="public-product-show-price-per-bid">$<%= number_with_precision(@product.price_per_bid, precision: 2) %></div>
+              <div style="font-size: 1.5rem; font-weight: 600;" data-testid="public-product-show-price-per-bid">$<%= number_with_precision(@product.price_per_bid, precision: 2) %></div>
               <div style="font-size: 0.75rem; opacity: 0.8; margin-top: var(--spacing-xs);">Minimum increment per bid</div>
             </div>
           </div>

@@ -1,10 +1,10 @@
-<div class="home-container" id="profile-edit-container">
-  <div class="home-content" id="profile-edit-content">
-    <header class="home-header" id="profile-edit-header">
+<div class="home-container" data-testid="profile-edit-container">
+  <div class="home-content" data-testid="profile-edit-content">
+    <header class="home-header" data-testid="profile-edit-header">
       <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
         <div>
-          <h1 id="profile-edit-title">Edit Profile</h1>
-          <p class="subtitle" id="profile-edit-subtitle">Update your account information</p>
+          <h1 data-testid="profile-edit-title">Edit Profile</h1>
+          <p class="subtitle" data-testid="profile-edit-subtitle">Update your account information</p>
         </div>
         <div style="display: flex; align-items: center; gap: var(--spacing-md);">
           <%= link_to profile_path, class: "btn btn-secondary", id: "profile-edit-cancel-button", style: "white-space: nowrap;" do %>
@@ -17,16 +17,16 @@
       </div>
     </header>
 
-    <div class="content-section" id="profile-edit-content-section" style="margin-top: var(--spacing-xl); max-width: 600px; margin-left: auto; margin-right: auto;">
-      <div class="section-card" id="profile-edit-card" style="text-align: left;">
+    <div class="content-section" data-testid="profile-edit-content-section" style="margin-top: var(--spacing-xl); max-width: 600px; margin-left: auto; margin-right: auto;">
+      <div class="section-card" data-testid="profile-edit-card" style="text-align: left;">
         <% if flash[:alert] %>
-          <div class="alert alert-error" id="profile-edit-alert" style="margin-bottom: var(--spacing-lg);">
+          <div class="alert alert-error" data-testid="profile-edit-alert" style="margin-bottom: var(--spacing-lg);">
             <%= flash[:alert] %>
           </div>
         <% end %>
 
         <% if @user.errors.any? %>
-          <div class="alert alert-error" id="profile-edit-errors" style="margin-bottom: var(--spacing-lg);">
+          <div class="alert alert-error" data-testid="profile-edit-errors" style="margin-bottom: var(--spacing-lg);">
             <h4 style="margin-bottom: var(--spacing-sm);"><%= pluralize(@user.errors.count, "error") %> prohibited this profile from being updated:</h4>
             <ul style="margin-top: var(--spacing-sm); padding-left: var(--spacing-lg);">
               <% @user.errors.full_messages.each do |message| %>
@@ -37,22 +37,22 @@
         <% end %>
 
         <%= form_with model: @user, url: profile_path, method: :patch, local: true, class: "auth-form", id: "profile-edit-form" do |f| %>
-          <div class="form-group" id="profile-edit-name-group">
+          <div class="form-group" data-testid="profile-edit-name-group">
             <%= f.label :name, "First Name", class: "form-label", id: "profile-edit-name-label" %>
             <%= f.text_field :name, class: "form-input", id: "profile-edit-name", placeholder: "Enter your first name", required: true, autofocus: true %>
           </div>
 
-          <div class="form-group" id="profile-edit-surname-group">
+          <div class="form-group" data-testid="profile-edit-surname-group">
             <%= f.label :surname, "Last Name", class: "form-label", id: "profile-edit-surname-label" %>
             <%= f.text_field :surname, class: "form-input", id: "profile-edit-surname", placeholder: "Enter your last name", required: true %>
           </div>
 
-          <div class="form-group" id="profile-edit-email-group">
+          <div class="form-group" data-testid="profile-edit-email-group">
             <%= f.label :email, "Email", class: "form-label", id: "profile-edit-email-label" %>
             <%= f.email_field :email, class: "form-input", id: "profile-edit-email", placeholder: "Enter your email", required: true %>
           </div>
 
-          <div class="form-actions" id="profile-edit-form-actions">
+          <div class="form-actions" data-testid="profile-edit-form-actions">
             <%= f.submit "Update Profile", class: "btn btn-primary", id: "profile-edit-submit" %>
             <%= link_to "Cancel", profile_path, class: "btn btn-secondary", id: "profile-edit-cancel-link" %>
           </div>

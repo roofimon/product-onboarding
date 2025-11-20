@@ -40,7 +40,13 @@ module PagyFrontend
   end
 
   def pagy_url_for(page)
-    url_for(request.params.merge(page: page))
+    # Use root_path for public index page to ensure pagination links use /?page=X instead of /public?page=X
+    if controller.is_a?(PublicController) && controller.action_name == 'index'
+      params_with_page = request.params.merge(page: page).except(:controller, :action)
+      root_path(params_with_page)
+    else
+      url_for(request.params.merge(page: page))
+    end
   end
 
   private
