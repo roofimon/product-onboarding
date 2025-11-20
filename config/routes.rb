@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   get "profile", to: "profiles#show", as: :profile
   get "profile/edit", to: "profiles#edit", as: :edit_profile
   patch "profile", to: "profiles#update"
+  get "profile/reset_password", to: "profiles#reset_password", as: :reset_password_profile
+  patch "profile/reset_password", to: "profiles#update_password"
 
   # Public routes
   get "public", to: "public#index", as: :public_index
