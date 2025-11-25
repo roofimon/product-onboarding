@@ -12,9 +12,9 @@ Set these variables in your Railway project settings:
 
 ### 1. RAILS_MASTER_KEY
 ```
-0b29ec78b2b16f44a512fe98aebf0990
+284ccc6bcd5c0701b992ec7e02606ec6
 ```
-**IMPORTANT**: Keep this secure! This decrypts your credentials.yml.enc file.
+**IMPORTANT**: Keep this secure! This decrypts your production credentials file (config/credentials/production.yml.enc).
 
 ### 2. RAILS_ENV
 ```
