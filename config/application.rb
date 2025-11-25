@@ -23,5 +23,20 @@ module ProductOnboarding
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Modular Monolith: Autoload domain paths
+    %w[authentication admin products profiles public].each do |domain|
+      config.autoload_paths << Rails.root.join("app/domains/#{domain}/controllers")
+      config.autoload_paths << Rails.root.join("app/domains/#{domain}/models")
+    end
+
+    # Add domain view paths
+    config.paths["app/views"].unshift(
+      Rails.root.join("app/domains/authentication/views"),
+      Rails.root.join("app/domains/admin/views"),
+      Rails.root.join("app/domains/products/views"),
+      Rails.root.join("app/domains/profiles/views"),
+      Rails.root.join("app/domains/public/views")
+    )
   end
 end
