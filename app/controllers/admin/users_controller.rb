@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :require_admin
-  before_action :set_user, only: [:approve, :deactivate, :activate]
+  before_action :set_user, only: [ :approve, :deactivate, :activate ]
 
   def index
     @users = User.where.not(id: current_user.id)
@@ -8,11 +8,11 @@ class Admin::UsersController < ApplicationController
     @waiting_count = User.where.not(id: current_user.id).waiting_for_approve.count
     @active_count = User.where.not(id: current_user.id).active.count
     @inactive_count = User.where.not(id: current_user.id).inactive.count
-    
+
     if params[:status].present? && User.statuses.key?(params[:status])
       @users = @users.where(status: params[:status])
     end
-    
+
     @users = @users.order(created_at: :desc)
   end
 

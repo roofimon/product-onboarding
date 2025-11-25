@@ -9,7 +9,7 @@ class Admin::UsersTest < ApplicationSystemTestCase
     fill_in "email", with: "admin@example.com"
     fill_in "password", with: "password123"
     click_button "Sign In"
-    
+
     # Wait for redirect to admin dashboard
     assert_current_path admin_dashboard_path
   end
@@ -26,7 +26,7 @@ class Admin::UsersTest < ApplicationSystemTestCase
     )
 
     visit admin_users_path
-    
+
     # Wait for the page to load
     assert_text "User Management"
 
@@ -39,7 +39,7 @@ class Admin::UsersTest < ApplicationSystemTestCase
     within("##{dom_id(waiting_user, :status_cell)}") do
       assert_selector ".badge", text: /active/i
     end
-    
+
     # Verify the user status changed in database
     waiting_user.reload
     assert waiting_user.active?
@@ -50,7 +50,7 @@ class Admin::UsersTest < ApplicationSystemTestCase
     active_user = users(:seller_one)
 
     visit admin_users_path
-    
+
     # Wait for the page to load
     assert_text "User Management"
 
@@ -63,7 +63,7 @@ class Admin::UsersTest < ApplicationSystemTestCase
     within("##{dom_id(active_user, :status_cell)}") do
       assert_selector ".badge", text: /inactive/i
     end
-    
+
     # Verify the user status changed in database
     active_user.reload
     assert active_user.inactive?
@@ -81,7 +81,7 @@ class Admin::UsersTest < ApplicationSystemTestCase
     )
 
     visit admin_users_path
-    
+
     # Wait for the page to load
     assert_text "User Management"
 
@@ -94,7 +94,7 @@ class Admin::UsersTest < ApplicationSystemTestCase
     within("##{dom_id(inactive_user, :status_cell)}") do
       assert_selector ".badge", text: /active/i
     end
-    
+
     # Verify the user status changed in database
     inactive_user.reload
     assert inactive_user.active?
@@ -102,7 +102,7 @@ class Admin::UsersTest < ApplicationSystemTestCase
 
   test "admin can filter users by status" do
     visit admin_users_path
-    
+
     # Wait for the page to load
     assert_text "User Management"
 
@@ -123,4 +123,3 @@ class Admin::UsersTest < ApplicationSystemTestCase
     assert_current_path admin_users_path
   end
 end
-

@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   get "home", to: "home#index", as: :home_index
 
   # Profile routes
-  resource :profile, only: [:show, :edit, :update] do
+  resource :profile, only: [ :show, :edit, :update ] do
     member do
       get :edit_password
       patch :update_password
@@ -40,9 +40,9 @@ Rails.application.routes.draw do
   # Admin routes
   get "admin", to: "admin#dashboard", as: :admin_dashboard
   get "admin/dashboard", to: "admin#dashboard"
-  
+
   namespace :admin do
-    resources :users, only: [:index] do
+    resources :users, only: [ :index ] do
       member do
         patch :approve
         patch :deactivate

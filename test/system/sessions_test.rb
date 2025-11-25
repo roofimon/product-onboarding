@@ -57,4 +57,3 @@ class SessionsTest < ApplicationSystemTestCase
     assert_no_text "Hello, John!"
   end
 end
-

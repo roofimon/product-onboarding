@@ -53,7 +53,7 @@ class PublicProductsTest < ApplicationSystemTestCase
     end
   end
 
-#   # Search Functionality Tests
+  #   # Search Functionality Tests
 
   test "search by product name exact match" do
     visit root_path
@@ -102,10 +102,10 @@ class PublicProductsTest < ApplicationSystemTestCase
 
     # Set sort order (this auto-submits the form)
     select "Price: Low to High", from: "sort-select"
-    
+
     # Wait for form submission and page reload
     assert_current_path root_path + "?sort=price_low_high"
-    
+
     # Wait for page to load and ensure search form has the sort parameter
     assert_selector "[data-testid='nav-search-form']"
     assert_selector "input[name='sort'][value='price_low_high']", visible: :hidden
@@ -113,7 +113,7 @@ class PublicProductsTest < ApplicationSystemTestCase
     # Perform search by submitting the form directly
     fill_in "search", with: "Vintage"
     page.execute_script("document.querySelector('[data-testid=\"nav-search-form\"]').submit();")
-    
+
     # Wait for URL to update with search parameter
     assert_text "Vintage", wait: 5
 
@@ -122,7 +122,7 @@ class PublicProductsTest < ApplicationSystemTestCase
     assert_match(/search=Vintage/, current_url)
   end
 
-#   # Sorting Tests
+  #   # Sorting Tests
 
   test "default sort is newest first" do
     visit root_path
@@ -146,7 +146,7 @@ class PublicProductsTest < ApplicationSystemTestCase
       first_price = find("[data-testid='product-card'][data-product-id='#{first_product.id}'] [data-testid='product-price-value']").text
       # Extract numeric value from price text like "$300.00"
       first_price_value = first_price.gsub(/[^0-9.]/, "").to_f
-      
+
       # Check that prices are in ascending order
       prices = Product.order(:open_price).limit(product_cards.length).map do |p|
         find("[data-testid='product-card'][data-product-id='#{p.id}'] [data-testid='product-price-value']").text.gsub(/[^0-9.]/, "").to_f
@@ -176,7 +176,7 @@ class PublicProductsTest < ApplicationSystemTestCase
 
     assert_selector "[data-testid='sort-select']"
     assert_selector "[data-testid='sort-label']", text: "Sort by:"
-    
+
     # Verify all sort options are present
     select_element = find("[data-testid='sort-select']")
     assert_includes select_element.text, "Newest First"
@@ -196,7 +196,7 @@ class PublicProductsTest < ApplicationSystemTestCase
     assert_equal "price_low_high", select_element.value
   end
 
-#   # Pagination Tests
+  #   # Pagination Tests
 
   test "pagination appears when more than 8 products exist" do
     visit root_path
@@ -213,7 +213,7 @@ class PublicProductsTest < ApplicationSystemTestCase
 
     if has_selector?(".pagy-nav .next a")
       click_link "Next"
-      
+
       # Verify we're on page 2
       assert_selector ".pagy-nav .page.active span", text: "2"
       assert_current_path root_path + "?page=2"
@@ -225,12 +225,12 @@ class PublicProductsTest < ApplicationSystemTestCase
 
     if has_selector?(".pagy-nav .prev a")
       click_link "Previous"
-      
+
       # Verify we're back on page 1
       assert_current_path root_path + "?page=1", wait: 5
     end
   end
-  
+
   test "active page is highlighted" do
     visit root_path + "?page=2"
 
@@ -242,103 +242,103 @@ class PublicProductsTest < ApplicationSystemTestCase
     end
   end
 
-#   test "pagination with search results" do
-#     visit root_path
+  #   test "pagination with search results" do
+  #     visit root_path
 
-#     fill_in "search", with: "Product"
-#     find("[data-testid='nav-search-field']").native.send_keys(:return)
+  #     fill_in "search", with: "Product"
+  #     find("[data-testid='nav-search-field']").native.send_keys(:return)
 
-#     # If search results span multiple pages, pagination should appear
-#     if has_selector?(".pagy-nav")
-#       assert_selector "[data-testid='pagination-wrapper']"
-#     end
-#   end
+  #     # If search results span multiple pages, pagination should appear
+  #     if has_selector?(".pagy-nav")
+  #       assert_selector "[data-testid='pagination-wrapper']"
+  #     end
+  #   end
 
-#   test "pagination with sorting" do
-#     visit root_path
+  #   test "pagination with sorting" do
+  #     visit root_path
 
-#     select "Price: Low to High", from: "sort-select"
+  #     select "Price: Low to High", from: "sort-select"
 
-#     if has_selector?(".pagy-nav")
-#       # Pagination should work with sort parameter
-#       if has_selector?(".pagy-nav .page a", text: "2")
-#         click_link "2"
-#         assert_current_path root_path + "?sort=price_low_high&page=2"
-#       end
-#     end
-#   end
+  #     if has_selector?(".pagy-nav")
+  #       # Pagination should work with sort parameter
+  #       if has_selector?(".pagy-nav .page a", text: "2")
+  #         click_link "2"
+  #         assert_current_path root_path + "?sort=price_low_high&page=2"
+  #       end
+  #     end
+  #   end
 
-#   # Empty States Tests
+  #   # Empty States Tests
 
-#   test "no products available when database is empty" do
-#     Product.destroy_all
+  #   test "no products available when database is empty" do
+  #     Product.destroy_all
 
-#     visit root_path
+  #     visit root_path
 
-#     assert_text "No products available"
-#     assert_text "Be the first to register a product!"
-#     assert_selector "[data-testid='empty-state']"
-#   end
+  #     assert_text "No products available"
+  #     assert_text "Be the first to register a product!"
+  #     assert_selector "[data-testid='empty-state']"
+  #   end
 
-#   test "no products found for search shows empty state" do
-#     visit root_path
+  #   test "no products found for search shows empty state" do
+  #     visit root_path
 
-#     fill_in "search", with: "ThisProductDoesNotExist12345"
-#     find("[data-testid='nav-search-field']").native.send_keys(:return)
+  #     fill_in "search", with: "ThisProductDoesNotExist12345"
+  #     find("[data-testid='nav-search-field']").native.send_keys(:return)
 
-#     assert_text "No products found"
-#     assert_text "No products match your search"
-#     assert_selector "[data-testid='clear-search-button']"
-#     assert_selector "[data-testid='empty-state']"
-#   end
+  #     assert_text "No products found"
+  #     assert_text "No products match your search"
+  #     assert_selector "[data-testid='clear-search-button']"
+  #     assert_selector "[data-testid='empty-state']"
+  #   end
 
-#   test "clear search button appears for empty search results" do
-#     visit root_path
+  #   test "clear search button appears for empty search results" do
+  #     visit root_path
 
-#     fill_in "search", with: "Nonexistent"
-#     find("[data-testid='nav-search-field']").native.send_keys(:return)
+  #     fill_in "search", with: "Nonexistent"
+  #     find("[data-testid='nav-search-field']").native.send_keys(:return)
 
-#     assert_selector "[data-testid='clear-search-button']"
-#     find("[data-testid='clear-search-button']").click
+  #     assert_selector "[data-testid='clear-search-button']"
+  #     find("[data-testid='clear-search-button']").click
 
-#     assert_current_path root_path
-#     assert_text "All Products"
-#   end
+  #     assert_current_path root_path
+  #     assert_text "All Products"
+  #   end
 
-#   # Navigation Tests
+  #   # Navigation Tests
 
-#   test "logo is present and links to root" do
-#     visit root_path
+  #   test "logo is present and links to root" do
+  #     visit root_path
 
-#     assert_selector "[data-testid='logo-link']"
-#     logo_link = find("[data-testid='logo-link']")
-#     assert_equal root_path, logo_link[:href]
-#   end
+  #     assert_selector "[data-testid='logo-link']"
+  #     logo_link = find("[data-testid='logo-link']")
+  #     assert_equal root_path, logo_link[:href]
+  #   end
 
-#   test "search bar is present in navigation" do
-#     visit root_path
+  #   test "search bar is present in navigation" do
+  #     visit root_path
 
-#     assert_selector "[data-testid='nav-search']"
-#     assert_selector "[data-testid='nav-search-field'][placeholder='Search products...']"
-#     assert_selector "[data-testid='nav-search-button']", text: "Search"
-#   end
+  #     assert_selector "[data-testid='nav-search']"
+  #     assert_selector "[data-testid='nav-search-field'][placeholder='Search products...']"
+  #     assert_selector "[data-testid='nav-search-button']", text: "Search"
+  #   end
 
-#   test "login button is present when not logged in" do
-#     visit root_path
+  #   test "login button is present when not logged in" do
+  #     visit root_path
 
-#     assert_selector "[data-testid='nav-login-button']", text: "Login"
-#     assert_equal login_path, find("[data-testid='nav-login-button']")[:href]
-#     assert_selector "[data-testid='nav-actions']"
-#   end
+  #     assert_selector "[data-testid='nav-login-button']", text: "Login"
+  #     assert_equal login_path, find("[data-testid='nav-login-button']")[:href]
+  #     assert_selector "[data-testid='nav-actions']"
+  #   end
 
-#   test "navigation is visible" do
-#     visit root_path
+  #   test "navigation is visible" do
+  #     visit root_path
 
-#     assert_selector "[data-testid='main-nav']"
-#     assert_selector "[data-testid='nav-content']"
-#   end
+  #     assert_selector "[data-testid='main-nav']"
+  #     assert_selector "[data-testid='nav-content']"
+  #   end
 
-#   # Product Detail Page Tests
+  #   # Product Detail Page Tests
 
   test "clicking product card navigates to detail page" do
     visit root_path
@@ -433,4 +433,3 @@ class PublicProductsTest < ApplicationSystemTestCase
     assert_match %r{/public/products/\d+}, current_path
   end
 end
-

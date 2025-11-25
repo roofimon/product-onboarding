@@ -11,7 +11,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     driver_options.add_argument("--no-sandbox")
     driver_options.add_argument("--disable-dev-shm-usage")
     driver_options.add_argument("--disable-gpu")
-    
+
     # Use Chromium browser
     chromium_path = "/usr/bin/chromium-browser"
     if File.exist?(chromium_path)

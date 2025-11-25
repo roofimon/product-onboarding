@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :require_login
-  before_action :set_user, only: [:show, :edit, :update, :edit_password, :update_password]
+  before_action :set_user, only: [ :show, :edit, :update, :edit_password, :update_password ]
 
   def show
   end
@@ -55,4 +55,3 @@ class ProfilesController < ApplicationController
     current_password.present? && @user.authenticate(current_password)
   end
 end
-

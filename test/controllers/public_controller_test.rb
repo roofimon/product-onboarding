@@ -25,13 +25,13 @@ class PublicControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should sort products price low to high" do
-    get root_url, params: { sort: 'price_low_high' }
+    get root_url, params: { sort: "price_low_high" }
     assert_response :success
     assert_select ".product-card"
   end
 
   test "should sort products price high to low" do
-    get root_url, params: { sort: 'price_high_low' }
+    get root_url, params: { sort: "price_high_low" }
     assert_response :success
     assert_select ".product-card"
   end

@@ -7,14 +7,14 @@ class ProfilesTest < ApplicationSystemTestCase
     fill_in "email", with: "seller1@example.com"
     fill_in "password", with: "password123"
     click_button "Sign In"
-    
+
     # Verify login was successful
     assert_text "Hello, John!"
   end
 
   test "user can update profile information" do
     visit profile_path
-    
+
     # Wait for page to load
     assert_text "Your Profile"
 
@@ -28,7 +28,7 @@ class ProfilesTest < ApplicationSystemTestCase
 
     # Should show success message
     assert_text "Profile updated successfully!"
-    
+
     # Should show updated information
     assert_text "UpdatedName UpdatedSurname"
     assert_text "updated@example.com"
@@ -36,12 +36,12 @@ class ProfilesTest < ApplicationSystemTestCase
 
   test "user cannot update profile with invalid email" do
     visit profile_path
-    
+
     # Wait for page to load
     assert_text "Your Profile"
 
     click_link "Edit Profile"
-    
+
     # Wait for edit form to load
     assert_text "Edit Profile"
 
@@ -57,7 +57,7 @@ class ProfilesTest < ApplicationSystemTestCase
 
   test "user can change password with correct current password" do
     visit profile_path
-    
+
     # Wait for page to load
     assert_text "Your Profile"
 
@@ -71,7 +71,7 @@ class ProfilesTest < ApplicationSystemTestCase
 
     # Should show success message
     assert_text "Password updated successfully!"
-    
+
     # Verify can login with new password
     accept_confirm do
       click_link "Logout"
@@ -87,7 +87,7 @@ class ProfilesTest < ApplicationSystemTestCase
 
   test "user cannot change password with incorrect current password" do
     visit profile_path
-    
+
     # Wait for page to load
     assert_text "Your Profile"
 
@@ -105,7 +105,7 @@ class ProfilesTest < ApplicationSystemTestCase
 
   test "user cannot change password when passwords don't match" do
     visit profile_path
-    
+
     # Wait for page to load
     assert_text "Your Profile"
 
@@ -123,7 +123,7 @@ class ProfilesTest < ApplicationSystemTestCase
 
   test "user cannot change password with short password" do
     visit profile_path
-    
+
     # Wait for page to load
     assert_text "Your Profile"
 

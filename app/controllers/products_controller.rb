@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :require_login, except: [:index]
-  before_action :set_product, only: [:show]
+  before_action :require_login, except: [ :index ]
+  before_action :set_product, only: [ :show ]
 
   def index
     @products = Product.all.order(created_at: :desc)
@@ -34,5 +34,3 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 end
-
-

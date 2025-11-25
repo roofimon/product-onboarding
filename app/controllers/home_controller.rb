@@ -4,7 +4,7 @@ class HomeController < ApplicationController
       @user = current_user
       if admin?
         redirect_to admin_dashboard_path
-        return
+        nil
       end
     else
       redirect_to signup_path

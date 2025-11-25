@@ -1,10 +1,10 @@
 # Pagy Frontend module for Rails views
 module PagyFrontend
   def pagy_nav(pagy)
-    return '' if pagy.pages <= 1
+    return "" if pagy.pages <= 1
 
     html = '<nav class="pagy-nav"><ul class="pagy-nav">'
-    
+
     # Previous link
     if pagy.previous
       html += "<li class=\"prev\"><a href=\"#{pagy_url_for(pagy.previous)}\" rel=\"prev\">&#8592; Previous</a></li>"
@@ -35,13 +35,13 @@ module PagyFrontend
       html += '<li class="next disabled"><span>Next &#8594;</span></li>'
     end
 
-    html += '</ul></nav>'
+    html += "</ul></nav>"
     html.html_safe
   end
 
   def pagy_url_for(page)
     # Use root_path for public index page to ensure pagination links use /?page=X instead of /public?page=X
-    if controller.is_a?(PublicController) && controller.action_name == 'index'
+    if controller.is_a?(PublicController) && controller.action_name == "index"
       params_with_page = request.params.merge(page: page).except(:controller, :action)
       root_path(params_with_page)
     else
@@ -55,20 +55,20 @@ module PagyFrontend
   def generate_series(pagy, slots: 7)
     pages = pagy.pages
     current_page = pagy.page
-    
+
     return (1..pages).to_a if slots >= pages
 
     half = (slots - 1) / 2
     start = if current_page <= half
               1
-            elsif current_page > (pages - slots + half)
+    elsif current_page > (pages - slots + half)
               pages - slots + 1
-            else
+    else
               current_page - half
-            end
+    end
 
     series = (start...(start + slots)).to_a
-    
+
     # Add gaps and ensure first/last pages are shown
     unless slots < 7
       series[0] = 1
@@ -84,4 +84,3 @@ module PagyFrontend
     series
   end
 end
-

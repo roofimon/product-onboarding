@@ -29,7 +29,7 @@ class RegistrationsTest < ApplicationSystemTestCase
 
     # Use JavaScript to bypass HTML5 validation
     page.execute_script("document.querySelector('input[name=\"user[name]\"]').removeAttribute('required')")
-    
+
     click_button "Create Account"
 
     # Should show validation error for name
@@ -74,7 +74,7 @@ class RegistrationsTest < ApplicationSystemTestCase
     fill_in "user[surname]", with: "User"
     fill_in "user[password]", with: "password123"
     fill_in "user[password_confirmation]", with: "password123"
-    
+
     # Use JavaScript to bypass HTML5 email validation
     page.execute_script("document.querySelector('input[name=\"user[email]\"]').setAttribute('type', 'text')")
     fill_in "user[email]", with: "invalid-email"
