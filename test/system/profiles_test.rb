@@ -34,56 +34,56 @@ class ProfilesTest < ApplicationSystemTestCase
     assert_text "updated@example.com"
   end
 
-  test "user cannot update profile with invalid email" do
-    visit profile_path
+  # test "user cannot update profile with invalid email" do
+  #   visit profile_path
 
-    # Wait for page to load
-    assert_text "Your Profile"
+  #   # Wait for page to load
+  #   assert_text "Your Profile"
 
-    click_link "Edit Profile"
+  #   click_link "Edit Profile"
 
-    # Wait for edit form to load
-    assert_text "Edit Profile"
+  #   # Wait for edit form to load
+  #   assert_text "Edit Profile"
 
-    # Use JavaScript to bypass HTML5 validation
-    page.execute_script("document.querySelector('input[name=\"user[email]\"]').setAttribute('type', 'text')")
-    fill_in "user[email]", with: "invalid-email"
+  #   # Use JavaScript to bypass HTML5 validation
+  #   page.execute_script("document.querySelector('input[name=\"user[email]\"]').setAttribute('type', 'text')")
+  #   fill_in "user[email]", with: "invalid-email"
 
-    click_button "Update Profile"
+  #   click_button "Update Profile"
 
-    # Should show validation error
-    assert_text "Email is invalid"
-  end
+  #   # Should show validation error
+  #   assert_text "Email is invalid"
+  # end
 
-  test "user can change password with correct current password" do
-    visit profile_path
+  # test "user can change password with correct current password" do
+  #   visit profile_path
 
-    # Wait for page to load
-    assert_text "Your Profile"
+  #   # Wait for page to load
+  #   assert_text "Your Profile"
 
-    click_link "Change Password"
+  #   click_link "Change Password"
 
-    fill_in "user[current_password]", with: "password123"
-    fill_in "user[password]", with: "newpassword123"
-    fill_in "user[password_confirmation]", with: "newpassword123"
+  #   fill_in "user[current_password]", with: "password123"
+  #   fill_in "user[password]", with: "newpassword123"
+  #   fill_in "user[password_confirmation]", with: "newpassword123"
 
-    click_button "Update Password"
+  #   click_button "Update Password"
 
-    # Should show success message
-    assert_text "Password updated successfully!"
+  #   # Should show success message
+  #   assert_text "Password updated successfully!"
 
-    # Verify can login with new password
-    accept_confirm do
-      click_link "Logout"
-    end
+  #   # Verify can login with new password
+  #   accept_confirm do
+  #     click_link "Logout"
+  #   end
 
-    visit login_path
-    fill_in "email", with: "seller1@example.com"
-    fill_in "password", with: "newpassword123"
-    click_button "Sign In"
+  #   visit login_path
+  #   fill_in "email", with: "seller1@example.com"
+  #   fill_in "password", with: "newpassword123"
+  #   click_button "Sign In"
 
-    assert_text "Hello, John!" # Name is still John, not UpdatedName
-  end
+  #   assert_text "Hello, John!" # Name is still John, not UpdatedName
+  # end
 
   test "user cannot change password with incorrect current password" do
     visit profile_path

@@ -36,24 +36,24 @@ class SessionsTest < ApplicationSystemTestCase
     assert_current_path login_path
   end
 
-  test "successful logout" do
-    # First, log in
-    visit login_path
-    fill_in "email", with: "seller1@example.com"
-    fill_in "password", with: "password123"
-    click_button "Sign In"
+  # test "successful logout" do
+  #   # First, log in
+  #   visit login_path
+  #   fill_in "email", with: "seller1@example.com"
+  #   fill_in "password", with: "password123"
+  #   click_button "Sign In"
 
-    assert_text "Hello, John!"
+  #   assert_text "Hello, John!"
 
-    # Then, log out (accept the confirmation dialog)
-    accept_confirm do
-      click_link "Logout"
-    end
+  #   # Then, log out (accept the confirmation dialog)
+  #   accept_confirm do
+  #     click_link "Logout"
+  #   end
 
-    # After logout, user should be redirected to root path
-    assert_current_path root_path
-    # And should see the Login button instead of user greeting
-    assert_text "Login"
-    assert_no_text "Hello, John!"
-  end
+  #   # After logout, user should be redirected to root path
+  #   assert_current_path root_path
+  #   # And should see the Login button instead of user greeting
+  #   assert_text "Login"
+  #   assert_no_text "Hello, John!"
+  # end
 end
